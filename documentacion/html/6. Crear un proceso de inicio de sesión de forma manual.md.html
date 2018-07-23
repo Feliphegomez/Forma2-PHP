@@ -1,0 +1,170 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Crear un proceso de inicio de sesión de forma manual.md</title><script type="text/javascript">
+//<![CDATA[
+window.__cfRocketOptions = {byc:0,p:0,petok:"ddf35aba078518bbde1b7e63af3a30c94ecd9f02-1519794170-1800"};
+//]]>
+</script>
+<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/b7ef205d/cloudflare-static/rocket.min.js"></script>
+<style></style></head><body id="preview">
+<h1><a id="Crear_un_proceso_de_inicio_de_sesin_de_forma_manual_0"></a>Crear un proceso de inicio de sesión de forma manual</h1>
+<p>El modo más sencillo y rápido de implementar el inicio de sesión con Facebook es con nuestros SDK oficiales para JavaScript, iOS y Android. Te recomendamos que consultes la guía de cada una de las plataformas.</p>
+<p>Sin embargo, si necesitas implementar un inicio de sesión basado en navegador sin usar nuestros SDK, como en la vista web de una aplicación nativa para computadora, digamos que para Windows 8, o un proceso de inicio de sesión que utilice únicamente código del servidor, puedes crearlo tú mismo mediante redireccionamientos de navegador. En esta guía se explica paso a paso el proceso de inicio de sesión y cómo implementarlo sin nuestros SDK:</p>
+<ul>
+<li>Comprobar el estado del inicio de sesión</li>
+<li>Iniciar la sesión</li>
+<li>Confirmar la identidad</li>
+<li>Almacenar los tokens de acceso y el estado del inicio de sesión</li>
+<li>Cerrar la sesión</li>
+</ul>
+<blockquote>
+<p>Para utilizar el inicio de sesión con Forma2 en una aplicación para computadoras, necesitas insertar un navegador web (también denominado visor web) en la aplicación para que realice el proceso de inicio de sesión.</p>
+</blockquote>
+<h2><a id="Iniciar_la_sesin_13"></a>Iniciar la sesión</h2>
+<p>Si una persona no inició sesión en tu aplicación o en Forma2, en ambos casos, puedes utilizar el cuadro de diálogo de inicio de sesión para pedirle que lo haga. Si la persona no inició sesión en Forma2, se le pedirá que lo haga antes de pasar a la pagina de la aplicación. Esto se detecta automáticamente por las configuraciones de que te enseñaremos pronto, de modo que no tienes que hacer nada para activar este comportamiento.</p>
+<h5><a id="Administrar_la_respuesta_del_cuadro_de_dilogo_de_inicio_de_sesin_17"></a>Administrar la respuesta del cuadro de diálogo de inicio de sesión</h5>
+<p>En este punto del proceso de inicio de sesión, la persona verá el cuadro de diálogo de inicio de sesión y tendrá la opción de cancelar el proceso o permitir a la aplicación acceder a sus datos.</p>
+<p>Si la persona que usa la aplicación elige “Ingresar” en el cuadro de diálogo de inicio de sesión, concede acceso a su perfil y a la información solicitada por permisos.</p>
+<p>En cualquier caso, el navegador vuelve a la aplicación e incluye los datos de respuesta que indican si la persona se conectó o canceló el proceso.</p>
+<p>Debido a las diversas combinaciones de lenguajes de código que se pueden utilizar en las aplicaciones web, nuestra guía no muestra ejemplos específicos. Sin embargo, la mayoría de los lenguajes modernos son capaces de realizar análisis de URL, del siguiente modo:</p>
+<h5><a id="Respuesta_26"></a>Respuesta</h5>
+<p>La respuesta recibida de este extremo tiene el formato JSON y, si no hay problemas, tendrá el siguiente aspecto:</p>
+<pre><code>{
+  &quot;status&quot;: &quot;connected&quot;,
+  &quot;authResponse&quot;: {
+    &quot;accessToken&quot;: &quot;Zm9ybWEyLm1hc3RlcnwxMXwyMDE4LTAyLTI3IDIyOjMxOjMy&quot;,
+    &quot;signedRequest&quot;: {
+      &quot;id&quot;: &quot;00000000000000000000000000000002&quot;,
+      &quot;cedula&quot;: &quot;11&quot;,
+      &quot;nombre&quot;: &quot;USUARIO FORMA2 MASTER&quot;,
+      &quot;user&quot;: &quot;forma2.master&quot;,
+      &quot;cargo&quot;: &quot;7019&quot;,
+      &quot;piloto&quot;: &quot;0&quot;,
+      &quot;estado&quot;: &quot;1&quot;,
+      &quot;supervisor&quot;: &quot;0&quot;,
+      &quot;novedad&quot;: &quot;0&quot;,
+      &quot;fecha_nacimiento&quot;: &quot;0000-00-00&quot;,
+      &quot;fecha_ingreso&quot;: &quot;2017-11-03&quot;,
+      &quot;rol&quot;: &quot;0&quot;,
+      &quot;ejecutivo_de_experiencia&quot;: &quot;0&quot;,
+      &quot;genero&quot;: &quot;MAS&quot;,
+      &quot;avatar&quot;: &quot;0&quot;,
+      &quot;cargo_name&quot;: &quot;ASESOR&quot;,
+      &quot;supervisor_name&quot;: &quot;Ninguno&quot;,
+      &quot;piloto_name&quot;: &quot;Ninguno&quot;,
+      &quot;estado_name&quot;: &quot;Activo&quot;,
+      &quot;rol_name&quot;: &quot;Ninguno&quot;,
+      &quot;ejecutivo_de_experiencia_name&quot;: &quot;Ninguno&quot;,
+      &quot;avatar_url&quot;: &quot;https://forma2.demedallo.com/forma2/api/v1.0/_docs/icons/128/team.png&quot;,
+      &quot;permisos&quot;: {
+        &quot;export&quot;: {
+          &quot;quiz&quot;: false
+        },
+        &quot;import&quot;: {
+          &quot;people&quot;: false,
+          &quot;indicators&quot;: false
+        },
+        &quot;quiz&quot;: {
+          &quot;view&quot;: true,
+          &quot;create&quot;: false,
+          &quot;edit&quot;: false,
+          &quot;delete&quot;: false,
+          &quot;history&quot;: false
+        },
+        &quot;calendary&quot;: {
+          &quot;view&quot;: true,
+          &quot;edit&quot;: false,
+          &quot;delete&quot;: false,
+          &quot;categories&quot;: {
+            &quot;create&quot;: false,
+            &quot;edit&quot;: false,
+            &quot;delete&quot;: false
+          }
+        },
+        &quot;chat&quot;: {
+          &quot;view&quot;: true,
+          &quot;edit&quot;: false,
+          &quot;delete&quot;: false,
+          &quot;group&quot;: {
+            &quot;7023&quot;: true
+          }
+        },
+        &quot;forum&quot;: {
+          &quot;view&quot;: true,
+          &quot;response&quot;: false,
+          &quot;edit&quot;: false,
+          &quot;delete&quot;: false,
+          &quot;categories&quot;: {
+            &quot;create&quot;: false,
+            &quot;edit&quot;: false,
+            &quot;delete&quot;: false
+          }
+        },
+        &quot;comments&quot;: {
+          &quot;view&quot;: true,
+          &quot;response&quot;: false,
+          &quot;edit&quot;: false,
+          &quot;delete&quot;: false
+        },
+        &quot;articles&quot;: {
+          &quot;view&quot;: true,
+          &quot;response&quot;: false,
+          &quot;create&quot;: false,
+          &quot;edit&quot;: false,
+          &quot;history&quot;: false,
+          &quot;delete&quot;: false,
+          &quot;categories&quot;: {
+            &quot;create&quot;: false,
+            &quot;edit&quot;: false,
+            &quot;delete&quot;: false
+          }
+        },
+        &quot;ecards&quot;: {
+          &quot;view&quot;: true,
+          &quot;response&quot;: false,
+          &quot;edit&quot;: false,
+          &quot;history&quot;: false,
+          &quot;create&quot;: false,
+          &quot;delete&quot;: false,
+          &quot;categories&quot;: {
+            &quot;create&quot;: false,
+            &quot;edit&quot;: false,
+            &quot;delete&quot;: false
+          }
+        },
+        &quot;alerts&quot;: {
+          &quot;view&quot;: true,
+          &quot;history&quot;: false,
+          &quot;create&quot;: false,
+          &quot;edit&quot;: false,
+          &quot;delete&quot;: false
+        },
+        &quot;indicators&quot;: {
+          &quot;view&quot;: true
+        },
+        &quot;stopwatch&quot;: {
+          &quot;view&quot;: true
+        },
+        &quot;devices&quot;: {
+          &quot;view&quot;: true,
+          &quot;categories&quot;: {
+            &quot;create&quot;: false,
+            &quot;edit&quot;: false,
+            &quot;delete&quot;: false
+          }
+        },
+        &quot;mundial&quot;: {
+          &quot;view&quot;: true,
+          &quot;link&quot;: &quot;../../mundial/&quot;
+        }
+      }
+    },
+    &quot;userID&quot;: &quot;00000000000000000000000000000002&quot;
+  }
+}
+</code></pre>
+<p>Si se produce algún error, recibirás un mensaje explicativo.</p>
+<h2><a id="Inspeccionar_tokens_de_acceso_167"></a>Inspeccionar tokens de acceso</h2>
+<p>Desde el cuadro de diálogo de inicio de sesión, recibirá un token de acceso. Puedes realizar comprobaciones automatizadas de estos tokens mediante un extremo de API:</p>
+<h2><a id="Cerrar_la_sesin_170"></a>Cerrar la sesión</h2>
+<p>Puedes cerrar la sesión de una persona en tu aplicación con la funcion <code>Forma2.LogOut()</code>.</p>
+
+</body></html>

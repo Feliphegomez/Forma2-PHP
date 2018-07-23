@@ -1,0 +1,98 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>API - 2. Usar la API.md</title><script type="text/javascript">
+//<![CDATA[
+window.__cfRocketOptions = {byc:0,p:0,petok:"e1cf4489fd5f94813b9435eb46a7ca0ea82b2c4d-1519917164-1800"};
+//]]>
+</script>
+<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/935cb224/cloudflare-static/rocket.min.js"></script>
+<style></style></head><body id="preview">
+<h1><a id="Usar_la_API_Graph_0"></a>Usar la API Graph</h1>
+<p>La API es el unico modo para manejar datos en Forma2. Es una API de bajo nivel basada en HTTP que se usa para consultar datos, publicar historias nuevas, subir fotos y otra gran variedad de tareas que puedas requerir que realice la aplicación. En esta guía se explica cómo conseguir todas estas cosas en la API.</p>
+<h3><a id="Conceptos_bsicos_3"></a>Conceptos básicos</h3>
+<p>En nuestra información general sobre la API  encontrarás los conceptos básicos de la terminología y la estructura de la API. En las siguientes secciones encontrarás más información sobre las diferentes operaciones que se pueden realizar con la API.</p>
+<h3><a id="Lectura_6"></a>Lectura</h3>
+<p>Todas pagina en la API se pueden leer simplemente con una solicitud GET HTTP al extremo relevante. Por ejemplo, si quisieras recuperar información sobre el usuario actual, tendrías que hacer una solicitud GET HTTP como se indica a continuación:</p>
+<pre><code>GET forma2/api
+  /v1.0/login.php?check=Zm9ybWEyLm1hc3RlcnwxMXwyMDE4LTAyLTI3IDIyOjMxOjMy
+</code></pre>
+<p>La mayoría de las llamadas a la API deben incluir un token de acceso. Consulta la referencia de la API para la página que quieras leer.</p>
+<p>La respuesta que recibas variará según la pagina que estés leyendo, pero tendrá la siguiente forma general:</p>
+<pre><code class="language-json">{
+   "<span class="hljs-attribute">fieldname</span>": <span class="hljs-value"><span class="hljs-string">"{field-value}"</span></span>,
+   "<span class="hljs-attribute">fieldname2.</span>" : <span class="hljs-value"><span class="hljs-string">"{field2-value}"</span>
+</span>}
+</code></pre>
+<h4><a id="Enviar_campos_22"></a>Enviar campos</h4>
+<p>Puedes elegir los campos (o fields) que quieres que se contenga la accion que estas llevando acabo. Esto resulta realmente útil para hacer que tus llamadas a la API sean más precisas y seguras.</p>
+<h4><a id="Ordenar_24"></a>Ordenar</h4>
+<p>En algunas paginas puedes ordenar determinados conjuntos de datos cronológicamente. Por ejemplo, puedes ordenar publicaciones en orden cronológico inverso con la clave ASC:</p>
+<pre><code>FALTA EJEMPLO
+</code></pre>
+<p>El valor de order debe ser uno de los siguientes:</p>
+<ul>
+<li>ASC</li>
+<li>DESC</li>
+</ul>
+<h4><a id="Recorrer_resultados_de_pginas_33"></a>Recorrer resultados de páginas</h4>
+<p>Cuando haces una solicitud de API a un listado, por lo general, no recibes todos los resultados de la solicitud en una sola respuesta. Esto se debe a que algunas respuestas contienen muchos objetos, por lo que la mayoría de las respuestas están paginadas de forma predeterminada.</p>
+<h4><a id="Paginacin_36"></a>Paginación</h4>
+<p>Al leer una pagina que admite la paginación, verás la siguiente respuesta JSON:</p>
+<pre><code class="language-json">{
+  "fields": {
+      "limit": 10,
+      "page": 1,
+      "page_next: 2
+  }
+}
+</code></pre>
+<p>Un perímetro con paginación de cursor admite los siguientes parámetros:</p>
+<h4><a id="Publicar__Crear_49"></a>Publicar / Crear</h4>
+<p>La mayoría de las paginas en la API tienen perímetros que pueden ser destinos de publicación. Cada publicación con la API se hace a través de una solicitud POST o GET HTTP conteniendo el campo o fields “action” con el valoe “create”. Por ejemplo, para cambiar el avatar de la sesion actual del token de acceso, tienes que hacer una solicitud POST o GET HTTP como se indica a continuación:</p>
+<pre><code>POST graph.facebook.com
+  /{user-id}/feed?
+    message={message}&amp;
+    access_token={access-token}
+</code></pre>
+<p>Todas las llamadas de publicación deben firmarse con un token de acceso. Para determinar los permisos que se necesitan en este token de acceso, consulta la referencia de la API para la pagina en la que deseas publicar o crear contenido.</p>
+<p>Hay un gran número de paginas en las que  puedes publicar. Encontrarás más detalles en el documento de referencia de cada una.</p>
+<h4><a id="Actualizar__Modificar_61"></a>Actualizar / Modificar</h4>
+<p>Cada modificacion con la API se hace a través de una solicitud POST o GET HTTP a la pagina relevante con todos el parametro “action” y valor “change”:<br>
+Todas las llamadas de modificacion deben firmarse con un token de acceso. Para determinar los permisos que se necesitan en este token de acceso, consulta la referencia de la API para la pagina en la que deseas publicar o crear contenido.</p>
+<pre><code>FALTA EJEMPLO
+</code></pre>
+<h4><a id="Eliminar_68"></a>Eliminar</h4>
+<p>Para eliminar contenido em las paginas envia en el campo “action” de la solictiud HTTP el valor “delete”:</p>
+<pre><code>FALTA EJEMPLO
+</code></pre>
+<h3><a id="Gestionar_errores_75"></a>Gestionar errores</h3>
+<p>Las solicitudes realizadas a nuestras API pueden obtener una serie de respuestas de error diferentes. El siguiente tema describe en detalle cada uno de estos inconvenientes presentados.</p>
+<h4><a id="Recibir_cdigos_de_error_78"></a>Recibir códigos de error</h4>
+<p>Lo siguiente representa una respuesta de error común que se genera a partir de una solicitud de API errónea:</p>
+<pre><code class="language-json">{
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Mensaje detallando el error"</span></span>,
+  }
+</span>}
+</code></pre>
+<ul>
+<li>message: Descripción en lenguaje natural del error.</li>
+<li>error: Indica que hay un error.</li>
+</ul>
+<h5><a id="Errores_91"></a>Errores</h5>
+<p>.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Error</th>
+<th>Qué hacer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OAuthException</td>
+<td>Si no existe un subcódigo, esto quiere decir que el estado de inicio de sesión o token de acceso caducó, se revocó o no es válido. Obtén un nuevo token de acceso.</td>
+</tr>
+</tbody>
+</table>
+
+</body></html>

@@ -1,0 +1,14 @@
+RewriteEngine on
+
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}.php -f
+#RewriteRule ^(.*)$ $1.php
+
+ErrorDocument 404 /forma2/index.php?pageActive=error-404
+
+
+
+
+#RewriteCond %{REQUEST_FILENAME} -d
+#RewriteCond %{REQUEST_FILENAME}.php -f
+#RewriteRule ^post/(.*)/$ $1.php

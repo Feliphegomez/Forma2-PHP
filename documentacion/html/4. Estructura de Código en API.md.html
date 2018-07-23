@@ -1,0 +1,155 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Estructura de Código en API.md</title><script type="text/javascript">
+//<![CDATA[
+window.__cfRocketOptions = {byc:0,p:0,petok:"62bb5d237b3b227f40df8ef40c1336a45019c7c0-1519839494-1800"};
+//]]>
+</script>
+<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/935cb224/cloudflare-static/rocket.min.js"></script>
+<style></style></head><body id="preview">
+<h1><a id="Estructura_de_Cdigo_en_API_0"></a>Estructura de Código en API</h1>
+<p>las paginas de la API se desarrollaron en PHP con una conexion PDO a la BD, en el codigo fuente de las pagina vamos a encontrar en su mayoria la misma estructura que enseñaremos a continuacion, continua leyendo para aprender a crear nuevas acciones.</p>
+<h4><a id="Acciones_de_Pagina_Ejemplo_3"></a>Acciones de Pagina Ejemplo</h4>
+<ul>
+<li>Eliminar</li>
+<li>Crear</li>
+<li>Ver</li>
+<li>Modificar</li>
+<li>Categorias</li>
+<li>Historial</li>
+</ul>
+<pre><code class="language-php"><span class="hljs-comment">#  --------------------------------------------------------------- #</span>
+<span class="hljs-comment">#  Author: FelipheGomez</span>
+<span class="hljs-comment">#  Author URL: http://demedallo.com &amp; http://feliphegomez.info</span>
+<span class="hljs-comment">#  License: Creative Commons Attribution 3.0 Unported</span>
+<span class="hljs-comment">#  License URL: http://creativecommons.org/licenses/by/3.0/</span>
+<span class="hljs-comment">#  --------------------------------------------------------------- #</span>
+<span class="hljs-keyword">require_once</span>(<span class="hljs-string">"autoload.php"</span>);
+
+<span class="hljs-variable">$jsonFinal</span> = <span class="hljs-keyword">new</span> stdClass();
+<span class="hljs-variable">$jsonFinal</span>-&gt;error = <span class="hljs-keyword">true</span>;
+<span class="hljs-variable">$jsonFinal</span>-&gt;message = <span class="hljs-string">"Parametros invalidos consulte la documentacion de la API."</span>;
+
+<span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>) &amp;&amp; count(<span class="hljs-variable">$_POST</span>)&gt;<span class="hljs-number">0</span>){ <span class="hljs-variable">$data</span> = (<span class="hljs-variable">$_POST</span>); }
+<span class="hljs-keyword">elseif</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>) &amp;&amp; count(<span class="hljs-variable">$_GET</span>)&gt;<span class="hljs-number">0</span>){ <span class="hljs-variable">$data</span> = (<span class="hljs-variable">$_GET</span>); }
+<span class="hljs-keyword">elseif</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_DELETE</span>) &amp;&amp; count(<span class="hljs-variable">$_DELETE</span>)&gt;<span class="hljs-number">0</span>){ <span class="hljs-variable">$data</span> = <span class="hljs-variable">$_DELETE</span>; }
+<span class="hljs-keyword">else</span>{ <span class="hljs-variable">$data</span> = <span class="hljs-keyword">array</span>(); };
+
+<span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'accesstoken'</span>])){
+    <span class="hljs-variable">$checkToken</span> = chechear_AccessToken_CCyUser(<span class="hljs-variable">$data</span>[<span class="hljs-string">'accesstoken'</span>]);
+    <span class="hljs-keyword">if</span>(<span class="hljs-variable">$checkToken</span>==<span class="hljs-keyword">false</span>){
+        <span class="hljs-variable">$jsonFinal</span>-&gt;error_message = <span class="hljs-string">"Accesstoken Invalido"</span>;
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>]) &amp;&amp; <span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>] == <span class="hljs-string">'delete'</span>){
+            <span class="hljs-comment">// Codigo para eliminar su contenido</span>
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>]) &amp;&amp; <span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>] == <span class="hljs-string">'create'</span>){
+            <span class="hljs-comment">// Codigo para crear su contenido</span>
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>]) &amp;&amp; <span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>] == <span class="hljs-string">'view'</span>){
+            <span class="hljs-comment">// Codigo para ver su contenido</span>
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>]) &amp;&amp; <span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>] == <span class="hljs-string">'change'</span>){
+            <span class="hljs-comment">// Codigo para modificar su contenido</span>
+        }<span class="hljs-keyword">elseif</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>]) &amp;&amp; <span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>] == <span class="hljs-string">"categories"</span>){
+            <span class="hljs-comment">// Codigo para ver, crear, modificar y eliminar las categorias de su contenido</span>
+        }<span class="hljs-keyword">elseif</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>]) &amp;&amp; <span class="hljs-variable">$data</span>[<span class="hljs-string">'action'</span>] == <span class="hljs-string">"history"</span>){
+            <span class="hljs-comment">// Codigo para ver el historial de su contenido</span>
+        } 
+    }
+}<span class="hljs-keyword">else</span>{
+    <span class="hljs-variable">$jsonFinal</span>-&gt;message = <span class="hljs-string">"Falta el accesstoken"</span>;
+};
+
+<span class="hljs-comment">#FINAL</span>
+header(<span class="hljs-string">'Content-Type: application/json'</span>);
+<span class="hljs-keyword">echo</span> json_encode(<span class="hljs-variable">$jsonFinal</span>,JSON_PRETTY_PRINT);
+<span class="hljs-keyword">return</span> json_encode(<span class="hljs-variable">$jsonFinal</span>,JSON_PRETTY_PRINT);
+</code></pre>
+<h2><a id="Lo_Basico_58"></a>Lo Basico</h2>
+<ul>
+<li><code>chechear_AccessToken_CCyUser( {accessToken-user} )</code></li>
+<li><code>$data[ {campo-key} ]</code></li>
+<li><code>$checkToken[ {campo-key-user-check} ]</code></li>
+</ul>
+<h4><a id="_chechear_AccessToken_CCyUser__64"></a><code>chechear_AccessToken_CCyUser()</code></h4>
+<p>Se utiliza para comprobar el token de acceso a Forma2 para el usuario que realiza la consulta o peticion al servidor, si deseas mas informacion consulta el manual tecnico.<br>
+Esta conformada por una cadena codificada en Base64 con los datos:</p>
+<ul>
+<li>cedula</li>
+<li>login / user / nick / username</li>
+<li>fecha de creacion del accesstoken</li>
+</ul>
+<h4><a id="_data_campokey___71"></a><code>$data[ {campo-key} ]</code></h4>
+<p>Los campos o fields recibidos por GET / POST son almacenados en la variable $data para acceder a uno se debe utilizar el metodos Array, ejemplo: <code>$data['check']</code> si se desea utilizar el campo de check de la cosulta.</p>
+<p>GET /forma2/api/v1.0/login.php?<code>check=YWZnb21lbWF8MTAzNTQyOTM2MHwyMDE4LTAyLTI4IDEwOjU1OjQy</code></p>
+<h4><a id="_checkToken_campokeyusercheck___76"></a><code>$checkToken[ {campo-key-user-check} ]</code></h4>
+<p>Despues de que el sistema compruebe los datos del accesstoken so almacenados en la variable <code>$checkToken</code>, para acceder a sus componentes lo manajeramos como un array y en caso de acceder a un elemento anidado se maneja como una stdClass, te mostraremos ahora un ejemplo de array.</p>
+<ul>
+<li>Para acceder al nombre de la persona que envia el token de acceso se haria de la siguiente manera -&gt; <code>$checkToken['nombre']</code></li>
+</ul>
+<p>Para conocer todos los datos a los que podemos acceder puedes consultar la guia de Tokens de Acceso.</p>
+<h5><a id="Comprobar_Permisos_82"></a>Comprobar Permisos</h5>
+<p>Para comprobar los permisos del token de acceso recibido se deben hacer desde la variable <code>$checkToken['permisos_cargos']</code> y en caso de ser anidados te mostraremos un ejemplo complejo para que no tengas inconvenientes, en el ejemplo se va a comprobar los permisos para acceder al historial del quiz.</p>
+<pre><code class="language-php"><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$checkToken</span>[<span class="hljs-string">'permisos_cargos'</span>]-&gt;quiz-&gt;history) &amp;&amp; <span class="hljs-variable">$checkToken</span>[<span class="hljs-string">'permisos_cargos'</span>]-&gt;quiz-&gt;history == <span class="hljs-keyword">true</span>){
+    <span class="hljs-variable">$jsonFinal</span>-&gt;message = <span class="hljs-string">"Tienes Acceso al historial"</span>;
+}<span class="hljs-keyword">else</span>{
+    <span class="hljs-variable">$jsonFinal</span>-&gt;message = <span class="hljs-string">"No tienes acceso al historial"</span>;
+};
+</code></pre>
+<h3><a id="Nueva_consulta_de_datos_92"></a>Nueva consulta de datos</h3>
+<p>Dentro de la API podemos utilizar la funcion <code>datosSQL( {consulta-sql} )</code> para acceder de forma rapida a una cosulta tipo <strong>SELECT</strong>:</p>
+<ul>
+<li>En el ejemplo se va utilizar <em>“SELECT id, firstname, lastname FROM MyGuests”</em>.</li>
+</ul>
+<h3><a id="Nueva_creacion_o_modificacion_de_datos_96"></a>Nueva creacion o modificacion de datos</h3>
+<p>Dentro de la API podemos utilizar la funcion <code>crearSQL( {consulta-sql} , { datos-array } )</code> para insertar o actualizar informacion de manera rapida, las consultas son <strong>INSERT</strong> &amp; <strong>UDPATE</strong>:</p>
+<ul>
+<li>En el ejemplo se va utilizar <em>“INSERT INTO MyGuests (firstname, lastname, email)<br>
+VALUES (?,?,?)”</em>.</li>
+</ul>
+<pre><code class="language-php"><span class="hljs-variable">$change</span> = crearSQL(<span class="hljs-string">"INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES (?,?,?)"</span>,<span class="hljs-keyword">array</span>(<span class="hljs-string">'John'</span>, <span class="hljs-string">'Doe'</span>, <span class="hljs-string">'<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="305a5f585e705548515d405c551e535f5d">[email&#160;protected]</a>'</span>));
+<span class="hljs-keyword">if</span>(<span class="hljs-variable">$change</span>-&gt;error == <span class="hljs-keyword">false</span>){
+    <span class="hljs-variable">$jsonFinal</span>-&gt;error = <span class="hljs-keyword">false</span>;
+    <span class="hljs-variable">$jsonFinal</span>-&gt;last_id = <span class="hljs-variable">$change</span>-&gt;last_id;
+    <span class="hljs-variable">$jsonFinal</span>-&gt;message = <span class="hljs-string">"Creado con exito!."</span>;
+}<span class="hljs-keyword">else</span>{
+    <span class="hljs-variable">$jsonFinal</span>-&gt;error_message = <span class="hljs-string">"Error creando."</span>;
+};
+</code></pre>
+<ul>
+<li>En el ejemplo se va utilizar <em>“UPDATE MyGuests SET lastname=? WHERE id=2”</em>.</li>
+</ul>
+<pre><code class="language-php"><span class="hljs-variable">$change</span> = crearSQL(<span class="hljs-string">"UPDATE MyGuests SET lastname=? WHERE id=2"</span>,<span class="hljs-keyword">array</span>(<span class="hljs-string">"Doe"</span>));
+<span class="hljs-keyword">if</span>(<span class="hljs-variable">$change</span>-&gt;error == <span class="hljs-keyword">false</span>){
+    <span class="hljs-variable">$jsonFinal</span>-&gt;error = <span class="hljs-keyword">false</span>;
+    <span class="hljs-variable">$jsonFinal</span>-&gt;message = <span class="hljs-string">"lastname actualizado con exito!"</span>;
+}<span class="hljs-keyword">else</span>{
+    <span class="hljs-variable">$jsonFinal</span>-&gt;error_message = <span class="hljs-string">"Error actualizando el lastname"</span>;
+};
+</code></pre>
+<h3><a id="Respuestas_API_129"></a>Respuestas API</h3>
+<h5><a id="OK__Respuesta_satisfactoria_130"></a>OK - Respuesta satisfactoria</h5>
+<p>Si la consulta fue exitosa se vera en la mayoría de las veces una respusta similar a la que te enseñaremos a continuacion.</p>
+<pre><code class="language-json">{
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"{ Mensaje de consulta cargada con exito. }"</span></span>,
+    "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">action</span>": <span class="hljs-value"><span class="hljs-string">"{ view / create / delete / history / change }"</span>
+        <span class="hljs-string">"{ field-1-key }"</span>: <span class="hljs-string">"{ field-1-value }"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">data</span>":<span class="hljs-value"><span class="hljs-string">"{informacion de la peticion}"</span>
+</span>}
+</code></pre>
+<h5><a id="Error__Campos__Fields_Invalidos_145"></a>Error - Campos / Fields Invalidos</h5>
+<p>En el cuyo caso que los campos que enviemos no sean reconocidos o no lleguen de manera correcta, la respuesta es:</p>
+<pre><code class="language-json">{
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Parametros invalidos consulte la documentacion de la API."</span>
+</span>}
+</code></pre>
+<h5><a id="Error__Token_de_Acceso_Invalido_154"></a>Error - Token de Acceso Invalido</h5>
+<p>En caso de que el accesstoken sea invalido dara como resultado la siguiente respuesta en codigo JSON.</p>
+<pre><code class="language-json">{
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Accesstoken Invalido."</span>
+</span>}
+</code></pre>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/d07b1474/cloudflare-static/email-decode.min.js"></script></body></html>

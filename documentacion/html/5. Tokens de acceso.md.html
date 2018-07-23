@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Tokens de acceso.md</title><script type="text/javascript">
+//<![CDATA[
+window.__cfRocketOptions = {byc:0,p:0,petok:"cf26a8c83db0e1786e97b1b941f62ad682914945-1519792605-1800"};
+//]]>
+</script>
+<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/b7ef205d/cloudflare-static/rocket.min.js"></script>
+<style></style></head><body id="preview">
+<h1><a id="Token_de_acceso_0"></a>Token de acceso</h1>
+<p>Cuando alguien se conecta con una aplicación o sitio mediante el inicio de sesión con Forma2, la aplicación podrá obtener un token que proporciona acceso seguro a las API de Forma2.<br>
+Un token de acceso es una cadena opaca que identifica a un usuario y que la aplicación puede utilizar para realizar llamadas a la API. Los tokens de acceso se obtienen con distintos métodos, los cuales describiremos más adelante en este documento. El token incluye información acerca de su caducidad y de la aplicación que lo generó. Para efectos de las comprobaciones de privacidad, la mayoría de las llamadas a la API en Forma2 deben incluir un token de acceso. Según el caso de uso.</p>
+<p>Aunque cada plataforma genera tokens de acceso mediante API distintas, todas siguen una estrategia básica para obtener un token de usuario:</p>
+<pre><code>1. El cliente solicita acceso y permisos a través de SDK y cuadro de diálogo de inicio de sesión.
+2. El usuario autentica y se aprueban los permisos (del usuario y del aplicativo).
+3. Token de acceso es regresado al cliente
+</code></pre>
+<h3><a id="JavaScript_10"></a>JavaScript</h3>
+<p>El SDK de Forma2 para JavaScript obtiene y conserva los tokens de acceso del usuario automáticamente en temporales del navegador. Puedes obtener el token de acceso del usuario realizando una llamada a Forma2.getLoginStatus(), que retornará el accessToken.</p>
+<h3><a id="Web_sin_JavaScript_13"></a>Web (sin JavaScript)</h3>
+<p>Al crear una aplicación en la web sin el SDK de Forma2 para JavaScript, deberás generar un token de acceso durante los pasos descritos en ese documento.</p>
+<h2><a id="Ejemplos_de_cdigo_16"></a>Ejemplos de código</h2>
+<h3><a id="JavaScript_web_18"></a>JavaScript (web)</h3>
+<pre><code>Forma2.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    var accessToken = response.authResponse.accessToken;
+    
+    // Lanzar alerta con el accesstoken
+    alert(accessToken);
+  } 
+});
+</code></pre>
+
+</body></html>

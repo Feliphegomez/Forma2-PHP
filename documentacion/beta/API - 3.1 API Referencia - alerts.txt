@@ -1,0 +1,353 @@
+# alerts - Alertas
+Esta pagina puede ser utilizada para listar todas las alertas, Listar alertas activas, Eliminar alertas, Crear alertas, Modificar alertas, Ver una alerta especifica, activar y desactivar alertas o ver el historial de las alertas.
+
+## Leyendo
+### Permisos
+ - alerts.view : El permiso debe estar en el valor true para poder ver alertas.
+
+### Campos
+| Nombre de la propiedad | Descripción | Tipo |
+| --- | --- | --- |
+| id | El ID de la alerta | int |
+| title | Titulo de la alerta | string |
+| message | Detalles sobre la alerta | string |
+| ticket | # Ticket de la alerta (opcional) | string |
+| piloto | Piloto donde se encuentra la alerta | int |
+| fecha_apertura | Fecha de apertura de la alerta | datetime |
+| fecha_cierre | Fecha del ultimo cierre de la alerta | datetime |
+| trash | Indica si la alerta se encuentra activa/inactiva | int |
+
+### Leyendo alertas activas
+~~~sh
+GET forma2/api
+    /v1.0/alerts.php?accesstoken={accesstoken}&action=view
+~~~
+~~~js
+/* Hacer la llamada desde la API */
+Forma2.app("POST", "alerts", 
+{
+    "action":"view"
+}, function(response){
+    console.log(response);
+});
+~~~
+
+#### Respuesta
+~~~json
+{
+  "error": false,
+  "message": "Contenido cargado con exito.",
+  "data": [
+    {
+      "id": "{alert-id}",
+      "title": "{alert-title}",
+      "message": "{alert-message}",
+      "ticket": "{alert-ticket}",
+      "piloto": "{piloto-id}",
+      "fecha_apertura": "alert-fecha_apertura",
+      "fecha_cierre": "alert-fecha_cierre",
+      "trash": "alert-trash"
+    }
+  ],
+  "fields": {
+    "...":"..."
+  },
+  "permisos": {
+    "...":"..."
+  }
+}
+~~~
+
+#### Paginacion
+Puedes realizar una exploracion si hay demaciados resultados.
+| Campo / Field | Funcionalidad | Tipo | Valor por defecto |
+| --- | --- | --- | --- |
+| page | # Pagina en la que deseas navegar | int | 1 |
+| limit | Limite de resultados por pagina | int | 10 |
+| order | Puedes ordenar | string(DESC/ASC) | DESC |
+
+### Leyendo alerta especifica
+~~~sh
+GET forma2/api
+    /v1.0/alerts.php?accesstoken={accesstoken}&action=view&id={alert-id}
+~~~
+~~~js
+/* Hacer la llamada desde la API */
+Forma2.app("POST", "alerts", 
+{
+    "action":"view"
+}, function(response){
+    console.log(response);
+});
+~~~
+
+#### Respuesta
+~~~json
+{
+  "error": false,
+  "message": "Contenido cargado con exito.",
+  "data": {
+    "id": "{alert-id}",
+    "title": "{alert-title}",
+    "message": "{alert-message}",
+    "ticket": "{alert-ticket}",
+    "piloto": "{piloto-id}",
+    "fecha_apertura": "alert-fecha_apertura",
+    "fecha_cierre": "alert-fecha_cierre",
+    "trash": "alert-trash"
+  },
+  "fields": {
+    "...": "..."
+  },
+  "permisos": {
+    "...": "..."
+  }
+}
+~~~
+
+
+
+
+## Creando
+### Permisos
+ - alerts.create : El permiso debe estar en el valor true para poder crear alertas.
+
+### Creando una alerta
+#### Campos
+| Requerido | Campo / Field | Descripción | Tipo de campo | Longitud de campo | Valor predeterminado |
+| --- | --- | --- | --- | --- | --- |
+| SI | title | Titulo de la alerta | string | 150 | none |
+| SI | message | Detalles sobre la alerta | string | - | none |
+| SI | ticket | # Ticket de la alerta (opcional) | string | 50 | none |
+
+~~~sh
+GET forma2/api
+    /v1.0/alerts.php?accesstoken={accesstoken}&action=create&title={title}&message={message}&ticket={ticket}
+~~~
+~~~js
+/* Hacer la llamada desde la API */
+Forma2.app("POST", "alerts", 
+{
+    "action":"create",
+    "title":"{title}",
+    "message":"{message}",
+    "ticket":"{ticket}"
+}, function(response){
+    console.log(response);
+});
+~~~
+
+#### Respuesta
+~~~json
+{
+  "error": false,
+  "message": "Contenido creado con exito.",
+  "id": "{alert-id}",
+  "fields": {
+    "title": "{title}",
+    "message": "{message}",
+    "ticket": "{ticket}"
+  },
+  "permisos": {
+    "...": "..."
+  }
+}
+~~~
+
+
+
+
+## Modificando
+### Permisos
+ - alerts.edit : El permiso debe estar en el valor true para poder modificar alertas.
+
+### Activando una alerta especifica
+#### Campos
+| Requerido | Campo / Field | Descripción | Tipo de campo | Longitud de campo | Valor predeterminado |
+| --- | --- | --- | --- | --- | --- |
+| SI | id | Id de la alerta | int | 0-11 | 0 |
+| SI | active | Confirmar activacion de alerta | boolean | false/true | false |
+
+~~~sh
+GET forma2/api
+    /v1.0/alerts.php?accesstoken={accesstoken}&action=change&id={alert-id}&active=true
+~~~
+~~~js
+/* Hacer la llamada desde la API */
+Forma2.app("POST", "alerts", 
+{
+    "action":"change",
+    "id":"{alert-id}",
+    "active":true
+}, function(response){
+    console.log(response);
+});
+~~~
+
+#### Respuesta
+~~~json
+{
+  "error": false,
+  "message": "Contenido activado con exito.",
+  "fields": {
+    "id": "{alert-id}",
+    "active": "true"
+  },
+  "permisos": {
+    "...": "..."
+  }
+}
+~~~
+
+
+
+### Modificando una alerta especifica
+#### Campos
+| Requerido | Nombre de la propiedad | Descripción | Tipo de campo | Longitud de campo | Valor predeterminado |
+| --- | --- | --- | --- | --- | --- |
+| SI | id | Id de la alerta | int | 0-11 | 0 |
+| SI | title | Titulo de la alerta | string | 150 | none |
+| SI | message | Detalles sobre la alerta | string | - | none |
+| SI | ticket | # Ticket de la alerta (opcional) | string | 50 | none |
+
+~~~sh
+GET forma2/api
+    /v1.0/alerts.php?accesstoken={accesstoken}&action=change&id={alert-id}&title={title-new}&message={message-new}&ticket={ticket-new}
+~~~
+~~~js
+/* Hacer la llamada desde la API */
+Forma2.app("POST", "alerts", 
+{
+    "action":"change",
+    "id":"{alert-id}",
+    "title":"{title-new}",
+    "message":"{message-new}",
+    "ticket":"{ticket-new}"
+}, function(response){
+    console.log(response);
+});
+~~~
+
+#### Respuesta
+~~~json
+{
+  "error": false,
+  "message": "Contenido modificado con exito.",
+  "fields": {
+    "id": "{alert-id}",
+    "title": "{title-new}",
+    "message": "{message-new}",
+    "ticket": "{ticket-new}"
+  },
+  "permisos": {
+    "...": "..."
+  }
+}
+~~~
+
+
+
+
+
+
+
+
+## Historial
+### Permisos
+ - alerts.history : El permiso debe estar en el valor true para poder ver el hsitorial alertas.
+
+### Campos
+| Nombre de la propiedad | Descripción | Tipo |
+| --- | --- | --- |
+| id | El ID de la alerta | int |
+| title | Titulo de la alerta | string |
+| message | Detalles sobre la alerta | string |
+| ticket | # Ticket de la alerta (opcional) | string |
+| piloto | Piloto donde se encuentra la alerta | int |
+| fecha_apertura | Fecha de apertura de la alerta | datetime |
+| fecha_cierre | Fecha del ultimo cierre de la alerta | datetime |
+| trash | Indica si la alerta se encuentra activa/inactiva | int |
+
+### Leyendo Historial
+~~~sh
+GET forma2/api
+    /v1.0/alerts.php?accesstoken={accesstoken}&action=history
+~~~
+~~~js
+/* Hacer la llamada desde la API */
+Forma2.app("POST", "alerts", 
+{
+    "action":"history"
+}, function(response){
+    console.log(response);
+});
+~~~
+
+#### Respuesta
+~~~json
+{
+  "error": false,
+  "message": "Contenido cargado con exito.",
+  "data": [
+    {
+      "id": "{alert-id}",
+      "title": "{alert-title}",
+      "message": "{alert-message}",
+      "ticket": "{alert-ticket}",
+      "piloto": "{piloto-id}",
+      "fecha_apertura": "alert-fecha_apertura",
+      "fecha_cierre": "alert-fecha_cierre",
+      "trash": "alert-trash"
+    }
+  ],
+  "fields": {
+    "...":"..."
+  },
+  "permisos": {
+    "...":"..."
+  }
+}
+~~~
+
+
+
+
+
+## Eliminando
+### Permisos
+ - alerts.delete : El permiso debe estar en el valor true para poder eliminar alertas.
+
+### Eliminando una alerta especifica
+~~~sh
+GET forma2/api
+    /v1.0/alerts.php?accesstoken={accesstoken}&action=delete&id={alert-id}
+~~~
+~~~js
+/* Hacer la llamada desde la API */
+Forma2.app("POST", "alerts", 
+{
+    "action":"delete",
+    "id":"{alert-id}"
+}, function(response){
+    console.log(response);
+});
+~~~
+
+#### Respuesta
+~~~json
+{
+  "error": false,
+  "message": "Contenido eliminado con exito.",
+  "id": "{alert-id}",
+  "fields": {
+    "id": "{alert-id}"
+  },
+  "permisos": {
+    "...": "..."
+  }
+}
+~~~
+
+
+
+
