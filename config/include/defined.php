@@ -9,11 +9,11 @@ date_default_timezone_set('America/Bogota'); // Configurar Zona Horaria
 define('site_name', 'Forma2 - No somos nosotros, Eres TU!'); // Titulo X defecto de la aplicacion
 define('site_name_md', 'Forma2'); // Titulo X defecto small
 
-define('connect', 'https'); // Tipo de conexión (HTTP | HTTPS)
-define('ssl_enable', true); // SSL Habilitado o no. (False | True)
-define('server_default', 'id-0851'); // Nombre del servidor Predeterminado (IP | nameserver)
-define('folderSitio', '/forma2-beta'); // Ruta de la carpeta del Sitio
-define('folderAPI', '/forma2-beta/api'); // Ruta de la carpeta de la API
+define('connect', 'http'); // Tipo de conexión (HTTP | HTTPS)
+define('ssl_enable', false); // SSL Habilitado o no. (False | True)
+define('server_default', 'serverapps'); // Nombre del servidor Predeterminado (IP | nameserver)
+define('folderSitio', '/forma2'); // Ruta de la carpeta del Sitio
+define('folderAPI', '/forma2/api'); // Ruta de la carpeta de la API
 
 ############### ---- NO TOCAR PARA NADA ---- ###############
 if(!isset($_SERVER['REQUEST_SCHEME'])) { $_SERVER['REQUEST_SCHEME']=connect; }; // Detectar si existe REQUEST_SCHEME
@@ -22,13 +22,13 @@ if(!isset($_SERVER['SERVER_NAME'])) { $_SERVER['SERVER_NAME']=server_default; };
 
 // Detectar si el sitio es ssl por defecto
 //Si no se encuentra el HTTPS "encendido"
-if(!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
-{
-    //Indique al navegador que redirija a la URL HTTPS.
-    header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
-    //Evita que se ejecute el resto de la secuencia de comandos.
-    exit("Espere un momento...");
-};
+#if(!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
+#{
+#    //Indique al navegador que redirija a la URL HTTPS.
+#    header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+#    //Evita que se ejecute el resto de la secuencia de comandos.
+#    exit("Espere un momento...");
+#};
 
 define("SERVER_NAME", $_SERVER['SERVER_NAME']); // Definir nombre del servidor
 define("SERVER_HOST", $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME']); // Definir nombre del servidor con host -> ORGANIZAR -> $_SERVER['REQUEST_SCHEME'].

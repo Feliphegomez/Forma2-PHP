@@ -2,7 +2,7 @@
 	<div class="sidebar-header">
 		<!-- .: <?php echo site_name_md; ?> :. -->
 		<h3 style="text-align:center;">
-			<a href="<?php echo url_site; ?>"><img class="" src="images/logos/Logotrans-350-opt.gif" style="width:100%;" /></a>
+			<a href="<?php echo url_site; ?>"><img class="" src="images/logos/logotrans-350-opt.gif" style="width:100%;" /></a>
 		</h3>
 	</div>
 	<div class="sidebar-profile-box">
@@ -370,7 +370,7 @@
 	<ul class="list-unstyled CTAs">
 		<li>
 			<a href="https://web.emtelco.co/ZonaE/" class="download" target="_blank">
-				<img width="100%" src="images/logos/logo-emtelco-_cxbpo.png" />
+				<img width="100%" src="images/logos/logoInferior.png" />
 			</a>
 		</li>
 	</ul>

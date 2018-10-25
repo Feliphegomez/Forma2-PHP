@@ -10,20 +10,18 @@ define('site_name', 'Forma2 - No somos nosotros, Eres TU!'); // Titulo X defecto
 define('site_name_md', 'Forma2'); // Titulo X defecto small
 define('site_name_sm', 'F2'); // Titulo X defecto medium
 define('v_api', 'v1.0'); // Version actual de la API
-define('F5_enable', true); // Activar F5
+define('F5_enable', false); // Activar F5
 
-define('connect', 'https'); // Tipo de conexión (HTTP | HTTPS)
-define('ssl_enable', true); // SSL Habilitado o no. (False | True)
-define('server_default', 'id-0851'); // Nombre del servidor Predeterminado (IP | nameserver)
-define('folderSitio', '/forma2-beta'); // Ruta de la carpeta del Sitio
-define('folderAPI', '/forma2-beta/api/'.v_api); // Ruta de la carpeta de la API
+define('connect', 'http'); // Tipo de conexión (HTTP | HTTPS)
+define('ssl_enable', false); // SSL Habilitado o no. (False | True)
+define('server_default', 'serverapps'); // Nombre del servidor Predeterminado (IP | nameserver)
+define('folderSitio', '/forma2'); // Ruta de la carpeta del Sitio
+define('folderAPI', '/forma2/api/'.v_api); // Ruta de la carpeta de la API
 
-define('DB_SERVER', 'localhost'); // DB Host url
-define('DB_USER', 'root'); // DB Usuario de Acceso
-define('DB_PASS', ''); // DB Contraseña de Acceso
-define('DB_NAME', 'forma2-beta'); // DB Nombre de la Base de Datos
-
-
+define('DB_SERVER', '192.168.1.20'); // DB Host url
+define('DB_USER', 'fg'); // DB Usuario de Acceso
+define('DB_PASS', 'Celeste.0.Samael'); // DB Contraseña de Acceso
+define('DB_NAME', 'forma2'); // DB Nombre de la Base de Datos
 
 ############### ---- DEFINIR TABLAS ---- ###############
 define('TBL_PERSONAL', 'forma2_people'); // tabla de personal
@@ -99,13 +97,13 @@ if(!isset($_SERVER['SERVER_NAME'])) { $_SERVER['SERVER_NAME']=server_default; };
 
 // Detectar si el sitio es ssl por defecto
 //Si no se encuentra el HTTPS "encendido"
-if(!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
-{
-    //Indique al navegador que redirija a la URL HTTPS.
-    header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
-    //Evita que se ejecute el resto de la secuencia de comandos.
-    exit("Espere un momento...");
-};
+#if(!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
+#{
+#    //Indique al navegador que redirija a la URL HTTPS.
+#    header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+#    //Evita que se ejecute el resto de la secuencia de comandos.
+#    exit("Espere un momento...");
+#};
 
 define("SERVER_NAME", $_SERVER['SERVER_NAME']); // Definir nombre del servidor
 define("SERVER_HOST", $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME']); // Definir nombre del servidor con host -> ORGANIZAR -> $_SERVER['REQUEST_SCHEME'].
