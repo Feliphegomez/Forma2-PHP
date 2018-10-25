@@ -52,14 +52,15 @@ if(isset($data['accesstoken'])){
 		else if(isset($data['action']) && $data['action'] == 'create'){
 			if(isset($permisos_user->create) && $permisos_user->create == true){
 				if(isset($data['draft']) && $data['draft'] == true && isset($data['type']) && $data['type'] !== '' ){
-					$command = "INSERT INTO ".TBL_CONTENIDO." ( type,piloto,author,trash,public ) VALUES (?,?,?,?,?)";
-					$create = crearSQL($command,array($data['type'],$checkToken['piloto'],$checkToken['id'],0,0));
+					$command = "INSERT INTO ".TBL_CONTENIDO." ( type,piloto,author,trash,public,data ) VALUES (?,?,?,?,?,?)";
+					$create = crearSQL($command,array($data['type'],$checkToken['piloto'],$checkToken['id'],0,0,'Escribe aquì el contenido del articulo o el link del banner.'));
 					if(isset($create->error) && $create->error == false){
 						$jsonFinal = $success_API->{'10'}; # Success 10 - Contenido creado con exito.
 						$jsonFinal->id = $create->last_id;
 					}
 					else{
 						$jsonFinal = $errores_API->{'500'}; # Error 500 - Ocurrio un problema creando la información, Intente nuevamente.
+						$jsonFinal->data = $create; # Error 500 - Ocurrio un problema creando la información, Intente nuevamente.
 					};
 				}
 				else{
@@ -161,13 +162,13 @@ if(isset($data['accesstoken'])){
 		}
 		# MODIFICAR PUBLICACIONES
 		else if(isset($data['action']) && $data['action'] == 'change'){
-			
 			# modificar pulicacion especifica
 			if($data['id'] !== '' && isset($data['id']) && $data['id'] > 0 && !isset($data['active'])){
 				$dataid = (int) $data['id'];
 				unset($data['id']);
 				unset($data['action']);
 				unset($data['accesstoken']);
+				unset($data['type']);
 				$jsonFinal->data = $data;
 				
 				$fields = array();

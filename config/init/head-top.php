@@ -5,15 +5,10 @@
 <link rel="stylesheet" href="<?php echo url_site; ?>/api/plugins/fontawesome/5.0.6/css/fontawesome-all.min.css">
 <!-- Our Style CSS -->
 <link rel="stylesheet" href="<?php echo url_site; ?>/css/sidebar.css">
-
 <link rel="stylesheet" href="<?php echo url_site; ?>/css/animate.css">
 <link href="<?php echo url_site; ?>/api/plugins/jQuery.Gantt/css/style.css" type="text/css" rel="stylesheet">
-
 <!-- jQuery Custom Scroller 3.1.5 -->
 <link rel="stylesheet" href="<?php echo url_site; ?>/api/plugins/malihu-custom-scrollbar-plugin/3.1.5/css/jquery.mCustomScrollbar.min.css">
-
-
-
 <!-- Scripts -->
 <!-- jQuery 3.2.1 -->
 <script src="<?php echo url_site; ?>/api/plugins/jquery/3.2.1/jquery-3.2.1.js"></script>
@@ -267,14 +262,10 @@
 
 <script>
 	function statusChangeCallback(response) {
-		console.log('statusChangeCallback');
-		console.log(response);
-
-		console.log(Forma2.options.site_url);
-		console.log(Forma2.options.login_url);
-
+		//console.log('statusChangeCallback' + JSON.stringify(response));
+		
 		if(response.status === 'connected' || response === 'connected') {
-			console.log('Session exite.');
+			console.log('Session : ' + 'connected');
 			testAPI();
 		} else {
 			if(window.location.href != Forma2.options.login_url){ window.location.href = Forma2.options.login_url; };
@@ -283,7 +274,7 @@
 			Forma2.LogIn(function(response) {
 				if (response.authResponse) {
 					console.log('¡Bienvenido! Obteniendo tu información ...');
-					console.log(response.authResponse.signedRequest.nombre);
+					//console.log(response.authResponse.signedRequest.nombre);
 					statusChangeCallback(response);
 				} else {
 					console.log('El usuario canceló el inicio de sesión o no autorizó completamente..');

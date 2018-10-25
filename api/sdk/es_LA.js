@@ -14,20 +14,13 @@ Forma2.init = function(o){
 		&& o.timeNotificationsClose && o.timeNotificationsClose != '' && o.timeNotificationsClose != undefined 
 	){
 		console.log("Configurando Forma2");
-		
-		console.log('Forma2.options: ');
-		
 		o.api_url_large = o.api_url+o.version;
 		o.api_url_plugins = o.api_url+"plugins/";
-		
 		Forma2.options = o;
-		console.log(Forma2.options);
 		
 		console.log("Validando ventanas emergentes");
 		Forma2.checkPopUps();
-		
 		Forma2.loadForma2();
-
 	}else{
 		console.log("Forma2 no iniciado.");
 		if(o.appName == '' || o.appName == undefined){ console.log("Falta appName."); };
@@ -114,7 +107,6 @@ function loadChatsPending(){
 	});
 }
 
-
 function cargarAlertasUserActive() {
 	var f = new Date();
 	if(!localStorage.getItem("forma2_alerts_times")){ localStorage.setItem("forma2_alerts_times", f); }else{ };
@@ -163,7 +155,6 @@ function cargarCCC(){
 		}
 	});
 };
-
 
 /** FUNCIONES ADICIONALES **/
 function crearNotificacion($data){

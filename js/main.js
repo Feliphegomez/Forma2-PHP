@@ -17,7 +17,7 @@ function cargarImportPage(){
 			"type":"people"
 			//"update":15
 		}, function(r){
-			console.log(r);
+			//console.log(r);
 			if(r.error === false){
 				$.notify(r.message, "success");
 				
@@ -68,7 +68,7 @@ function updatePeopleImport(updateTemp,idTemp){
 		"type":"people",
 		"update":updateTemp
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			//$.notify(r.message, "success");
 			if(r.data[0].create == true){
@@ -103,7 +103,7 @@ function cargarNotificacionPage(){
 			"action":"view",
 			"id":param.id
 		}, function(r){
-			console.log(r);
+			//console.log(r);
 			if(r.error === false){
 				$.notify(r.message, "success");
 				$(".view-page-alerts-id").html(r.data.id);
@@ -132,7 +132,7 @@ function cargarQuizEditPage(){
 			"page":"quiz",
 			"id":param.draft
 		}, function(r){
-			console.log(r);
+			//console.log(r);
 			if(r.error === false){
 				$.notify(r.message, "success");
 				if(r.permisos && r.permisos !== undefined){
@@ -203,7 +203,7 @@ function cargarQuizCurrentPageResult(){
 		"page":"quiz",
 		"current":true
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			if(r.quiz.presencia == true){
@@ -264,7 +264,7 @@ function cargarQuizCurrent(){
 		"page":"quiz",
 		"current":true
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			if(r.quiz.presencia == false && r.quiz.querys.length > 0){
@@ -356,7 +356,7 @@ function submitQuizCurrent(){
 			"quiz":$topic,
 			"result":JSON.stringify(response)
 		}, function(r){
-			console.log(r);
+			//console.log(r);
 			
 			$("#modal-view-quiz-current").modal("hide");
 			if(r.error === false){
@@ -446,7 +446,7 @@ function crearQuizDraft(){
 		"action":"create",
 		"draft":true
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			$.notify(r.message, "success");
 			window.location.href = Forma2.options.site_url+'index.php?pageActive=create-quiz&type=quiz&draft='+r.id;
@@ -487,7 +487,7 @@ function eliminarQuizActual(){
 		"page":"quiz",
 		"type":"current"
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			$.notify(r.message, "success");
@@ -514,7 +514,7 @@ function cargarHistoryQuizPagina(){
 		"page":"quiz",
 		"action":"history"
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			if (typeof r.data !== 'undefined' && r.data !== null) {
@@ -538,7 +538,7 @@ function cargarDraftsQuizPagina(){
 		"action":"view",
 		"draft":true
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			if (typeof r.data !== 'undefined' && r.data !== null) {
@@ -564,7 +564,7 @@ function cargarDraftsPublishPagina(){
 		"type":"list",
 		"draft":true
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			if (typeof r.data !== 'undefined' && r.data !== null) {
@@ -620,7 +620,7 @@ function cargarHistoryPublishPagina(){
 		"action":"history",
 		"type":get.type
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			if (typeof r.data !== 'undefined' && r.data !== null) {
@@ -645,7 +645,7 @@ function cargarHistoryAlertsPagina(){
 	{
 		"action":"history"
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			if (typeof r.data !== 'undefined' && r.data !== null) {
@@ -712,7 +712,7 @@ function reactivarPublish(idPublish){
 		"id":idPublish,
 		"active":true
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			$('#history-publish-id-'+idPublish).hide();
 			$.notify(r.message, "success");
@@ -736,7 +736,7 @@ function cargarForumQuestionsPagina(){
 			"type":param.type,
 			"category":param.of
 		}, function(r){
-			console.log(r);			
+			//console.log(r);			
 			if(r.error === false){
 				$(".forum-name").html(r.forum.name);
 				
@@ -850,17 +850,7 @@ function parseQueryForumPage(element){
 
 function cargarNavBarTop(){
 	console.log("Cargando Menu Top -> cargarNavBarTop().");
-	console.log(Forma2.loadSession().authResponse.signedRequest.permisos);
-	
-	/* CARGAR MUNDIAL */
-	if(Forma2.loadSession().authResponse.signedRequest.permisos.mundial !== undefined && Forma2.loadSession().authResponse.signedRequest.permisos.mundial.view == true){
-		console.log("Mostrando Btn Mundial en la NavBarTop");
-		$(".item-mundial-navbartop").show();
-		
-		console.log("Configurando Btn de Mundial en la NavBarTop");
-		$(".forma2-mundial-link").attr('href', Forma2.loadSession().authResponse.signedRequest.permisos.mundial.link);
-		$(".forma2-mundial-link").attr('target', "_blank");
-	};
+	//console.log(Forma2.loadSession().authResponse.signedRequest.permisos);
 	
 	/* CARGAR FORO */
 	if(Forma2.loadSession().authResponse.signedRequest.permisos.forum !== undefined && Forma2.loadSession().authResponse.signedRequest.permisos.forum.response == true){
@@ -875,10 +865,10 @@ function cargarNavBarTop(){
 			"pending":true,
 			"type":"forum"
 		}, function(r){
-			console.log(r);			
+			//console.log(r);			
 			if(r.error === false){
 				console.log("Cargando Total de Preguntas Pdtes en la NavBarTop");
-				console.log(r.data.length);
+				//console.log(r.data.length);
 				
 				$(".total-questions-response-navbartop").html(r.data.length);
 				
@@ -895,36 +885,8 @@ function cargarNavBarTop(){
 			}
 		})
 	};
-	
-	if(Forma2.loadSession().authResponse.signedRequest.permisos.chat !== undefined && Forma2.loadSession().authResponse.signedRequest.permisos.chat.view == true){
-		console.log("Mostrando Btn Messeger en la NavBarTop");
-		$(".item-messenger-pending-navbartop").show();
-		
-		//Forma2.options.api_url_large/messenger.php?accesstoken= { ACCESSTOKEN } &action=pending
-		console.log("Cargando Chats Pendientes del Messenger");
-		Forma2.app("POST", "messenger", 
-		{
-			"action":"pending"
-		}, function(r){
-			console.log(r);			
-			if(r.error === false){
-				console.log("Cargando Total de Chats Pdtes en la NavBarTop");
-				console.log(r.data.length);
-				
-				$(".total-messenger-pending-navbartop").html(r.data.length);
-				
-				for (i = 0; i < r.data.length; i++) { crearItemChatNavBarTop(r.data[i]); };
-				
-				if(r.data.length==0){
-					$("#menu-chat-top").append('<li><a>No tienes conversaciones pdtes.</a></li>');
-				}
-			}else{
-				
-			}
-			$(".spin-chat-messenger-navbar").hide();
-		})
-	};
-		
+
+	/* CARGAR KPIs */
 	if(Forma2.loadSession().authResponse.signedRequest.permisos.indicators !== undefined && Forma2.loadSession().authResponse.signedRequest.permisos.indicators.view == true){
 		console.log("Mostrando Btn Indicadores en la NavBarTop");
 		$(".item-indicators-navbartop").show();
@@ -936,10 +898,9 @@ function cargarNavBarTop(){
 			"action":"view",
 			"my":true
 		}, function(r){
-			console.log(r);			
+			//console.log(r);
 			if(r.error === false){
 				console.log("Cargando Total de Indicadores Activos en la NavBarTop");
-				console.log(r.data.length);
 				
 				$(".total-indicators-navbartop").html(r.data.length);
 				
@@ -960,26 +921,28 @@ function cargarNavBarTop(){
 		});		
 	};
 	
+	/* CARGAR CRONOMETRO */
+	/*
 	if(Forma2.loadSession().authResponse.signedRequest.permisos.stopwatch !== undefined && Forma2.loadSession().authResponse.signedRequest.permisos.stopwatch.view == true){
 		console.log("Mostrando Btn Cronometro en la NavBarTop");
 		$(".item-stopwatch-navbartop").show();
-		
-	};
+	};*/
 	
+	/* CARGAR ALERTAS */
 	if(Forma2.loadSession().authResponse.signedRequest.permisos.alerts !== undefined && Forma2.loadSession().authResponse.signedRequest.permisos.alerts.view == true){
 		console.log("Mostrando Btn Alertas en la NavBarTop");
 		$(".item-alerts-navbartop").show();
 		
 		//Forma2.options.api_url_large/alerts.php?accesstoken= { ACCESSTOKEN } &action=actives
-		console.log("Cargando Alertas Activas");
+		
 		Forma2.app("POST", "alerts", 
 		{
 			"action":"view"
 		}, function(r){
-			console.log(r);			
+			//console.log(r);			
 			if(r.error === false){
 				console.log("Cargando Total de Alertas Activas en la NavBarTop");
-				console.log(r.data.length);
+				//console.log(r.data.length);
 				
 				$(".total-alerts-navbartop").html(r.data.length);
 			
@@ -988,7 +951,6 @@ function cargarNavBarTop(){
 					|| Forma2.loadSession().authResponse.signedRequest.permisos && Forma2.loadSession().authResponse.signedRequest.permisos.alerts.edit == true
 					|| Forma2.loadSession().authResponse.signedRequest.permisos && Forma2.loadSession().authResponse.signedRequest.permisos.alerts.delete == true
 				){
-					console.log("Cargando Alertas en Sidebar.");
 					
 					$html_a = '<li>';
 						$html_a += '<a href="#alertsSubmenu" data-toggle="collapse" aria-expanded="false">';
@@ -1037,7 +999,7 @@ function cargarNavBarTop(){
 function crearItemAlertsSideBar(element,permisos){
 	$t = '';
 	if($("#alert-sidebar-id-"+element.id).length > 0){
-		console.log("Elemento [alert-navbar-id-"+element.id+" ] Ya existe, No se va a crear...");
+		//console.log("Elemento [alert-navbar-id-"+element.id+" ] Ya existe, No se va a crear...");
 	}else{
 		$t += '<li id="alert-sidebar-id-'+element.id+'">';
 
@@ -1079,7 +1041,7 @@ function deleteAlert(idAlert){
 					"action":"delete",
 					"id":idAlert
 				}, function(r){
-					console.log(r);
+					//console.log(r);
 					if(r.error === false){
 						$.notify("Eliminada con exito!...", "success");
 						location.reload();
@@ -1105,7 +1067,7 @@ function createAlert(){
 		"message":message,
 		"ticket":ticket
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			$.notify("Alerta creada con exito!...", "success");
 			location.reload();
@@ -1124,7 +1086,7 @@ function openEditAlert(idAlert){
 		"action":"view",
 		"id":idAlert
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			
 			id = $('#modal-edit-alerts input[name="id"]').val(r.data.id);
@@ -1153,7 +1115,7 @@ function editAlert(){
 		"message":message,
 		"ticket":ticket
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			$.notify("Guardado con exito...", "success");
 			location.reload();
@@ -1169,7 +1131,7 @@ function reactivarAlert(idAlert){
 		"id":idAlert,
 		"active":true
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			$.notify("Re-Activada con exito...", "success");
 			$('#history-alert-id-'+idAlert).hide();
@@ -1180,16 +1142,13 @@ function reactivarAlert(idAlert){
 };
 
 function cargarCalendary(category,filtro){
-	console.log('Cargado cargarCalendary();');
-	
-	
 	Forma2.app("POST", "calendary", {
 		"action":"view",
 		"style":"gantt",
 		"order":filtro,
 		"category":category
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){			
 			$(".gantt").gantt({
 				//source: 'api/v1.0/calendary.php?accesstoken='+Forma2.AccessToken()+'&action=view&style=gantt&category=1&order=formador',
@@ -1265,10 +1224,10 @@ function createCalendaryModal(){
 		&& datos.encargado !== ''
 		&& datos.category !== ''
 	){
-		console.log(datos);
+		//console.log(datos);
 		Forma2.app("POST", "calendary", datos, function(r){
 			$('#bd-modal-create-capas-calendary').modal('hide');
-			console.log(r);
+			//console.log(r);
 			if(r.error === false){
 				$.notify(r.message, "success");
 				location.reload();
@@ -1301,10 +1260,10 @@ function editCalendaryModal(){
 		&& datos.encargado !== ''
 		&& datos.category !== ''
 	){
-		console.log(datos);
+		//console.log(datos);
 		Forma2.app("POST", "calendary", datos, function(r){
 			$('#bd-modal-edit-capas-calendary').modal('hide');
-			console.log(r);
+			//console.log(r);
 			if(r.error === false){
 				$.notify(r.message, "success");
 				location.reload();
@@ -1340,7 +1299,7 @@ function loadEditCapa(idCapa){
 	$('#bd-modal-edit-capas-calendary input[name="action_forms"]').val()
 	
 	$("#bd-modal-edit-capas-calendary").modal("show");
-	console.log(idCapa);
+	//console.log(idCapa);
 };
 
 // Ver un calendario
@@ -1382,7 +1341,7 @@ function deleteCalendary(id){
 					"action":"delete",
 					"id":id
 				}, function(r){
-					console.log(r);
+					//console.log(r);
 					if(r.error === false){
 						$.notify("Eliminado con exito!...", "success");
 						location.reload();
@@ -1534,7 +1493,7 @@ function cargarSideBar(){
 		crearMenuSideBarDefault({
 			"type":"calendary",
 			"icon":"fas fa-calendar",
-			"name":"Capacitaciones"
+			"name":"Agenda"
 		});
 	}
 	if(Forma2.loadSession().authResponse.signedRequest.permisos && Forma2.loadSession().authResponse.signedRequest.permisos.devices.view == true){
@@ -1622,7 +1581,7 @@ function stadisticsCurrentQuiz(){
 		"page":"quiz",
 		"current":true
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		
 		if(r.error === false){
 			$.notify(r.message, "success");
@@ -1693,7 +1652,7 @@ function cargarManualsDevicesPagina(){
 			"device_id":param.device_id,
 			"action":"view"
 		}, function(r){
-			console.log(r);
+			//console.log(r);
 			
 			if(r.error === false){
 				$(".manufacturer-link").attr('href',Forma2.options.site_url+'index.php?pageActive=explore-category&type=devices&device_type='+r.data.device.type+'&device_manufacturer='+r.data.manufacturer.id);
@@ -1796,7 +1755,7 @@ function cargarTopicsDevicesPagina(){
 			"id":param.device_id,
 			"action":"view"
 		}, function(r){
-			console.log(r);
+			//console.log(r);
 			if(r.error === false){
 				$(".device-name").html(r.data.name);
 				$(".device-manufacturer-name").html(r.data.manufacturer_name);
@@ -1845,7 +1804,7 @@ function cargarDevicesSideBar(){
 		"list":true,
 		"type":"sidebar"
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 		$html = '';
 		$html += '<li>';
@@ -1868,7 +1827,6 @@ function cargarDevicesSideBar(){
 }
 
 function itemMenuSideBarDevices(element){
-	console.log("Cargado itemMenuSideBarDevices()");	
 	$html = '<li>';
 		$html += '<a href="#pageSubmenu-'+element.id+'" data-toggle="collapse" aria-expanded="false">';
 			$html += '<i class="'+element.icon+'"></i>';
@@ -1877,21 +1835,12 @@ function itemMenuSideBarDevices(element){
 		$html += '<ul class="collapse list-unstyled" id="pageSubmenu-'+element.id+'">';			
 			
 			if(element.tree !== undefined){
-				console.log("Tree En Devices Exite, agregando dispositivos...");
-				
 				for (a = 0; a < element.tree.length; a++) {
 					$html += itemMenuSideBar({
 						"name":element.tree[a].name,
 						"icon":element.tree[a].icon,
 						"href":"javascript: window.location.href = '"+Forma2.options.site_url+"index.php?pageActive=explore-category&type=devices&device_type="+element.id+"&device_manufacturer="+element.tree[a].id+"'"
 					});
-					/*
-					$html += '<li>';
-						$html += '<a href="+'">';
-							$html += '<i class="'+element.tree[a].name+'"></i>';
-							$html += element.tree[a].name;
-						$html += '</a>';
-					$html += '</li>';*/
 				}
 			}else{
 				$html += '<li>';
@@ -1910,9 +1859,8 @@ function crearMenuSideBarDefault(data){
 		"list":true,
 		"type":data.type
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
-			
 			$html = '';
 			$html += '<li>';
 				$html += '<a href="#'+data.type+'Submenu" data-toggle="collapse" aria-expanded="false">';
@@ -1936,7 +1884,6 @@ function crearMenuSideBarDefault(data){
 					
 				$html += '</ul>';
 			$html += '</li>';
-			console.log("Agregando crearMenuSideBarDefault()");
 				
 			$("#menu-sidebar").append($html);
 		}else{
@@ -2012,7 +1959,7 @@ function parseLiMenuSideBar(element,permisos){
 function cargarDatosPerfil(){
 	session = Forma2.loadSession();
 	$datos = session.authResponse.signedRequest;
-	console.log($datos);
+	//console.log($datos);
 	
 	$(".forma2-micuenta-nombre").html($datos.nombre);
 	$(".forma2-micuenta-link-profile").attr('href',Forma2.options.site_url+'index.php?pageActive=view-profiles&nick_profile='+$datos.user+'&id_profile='+$datos.id);
@@ -2071,7 +2018,7 @@ function cargarUltimasEcards(){
 				"page":$datos.page,
 				"limit":$datos.limit
 			}, function(r){
-				console.log(r);
+				//console.log(r);
 				if(r.error === false && r.data.length > 0){
 					$thisElement.data("page",r.fields.page_next);
 					console.log("page_next: "+r.fields.page_next);
@@ -2164,7 +2111,7 @@ function cargarUltimasPublicaciones(){
 				"of":$datos.category,
 				"limit":$datos.limit
 			}, function(r){
-				console.log(r);
+				//console.log(r);
 				
 				$(".spinForma2-pinBoot").hide();
 				if(r.error === false && r.data.length > 0){
@@ -2175,7 +2122,6 @@ function cargarUltimasPublicaciones(){
 							console.log("SI EXITE");
 						}else{
 							console.log("NO EXITE");
-							
 							$(".pinBoot").append(parsePublish(element)); //AGREGAR DESDE EL FINAL
 							//$(".pinBoot").prepend(parsePublish(element)); AGREGAR DESDE EL INICIO
 						}
@@ -2217,7 +2163,7 @@ function cargarDispositivosExplode(){
 				"page":$datos.page,
 				"limit":$datos.limit
 			}, function(r){
-				console.log(r);
+				//console.log(r);
 
 				$(".spinForma2-pinBoot").hide();
 				//alert(r.data.length);
@@ -2283,7 +2229,7 @@ function deleteCategory(id){
 					"action":"delete",
 					"id":id
 				}, function(r){
-					console.log(r);
+					//console.log(r);
 					if(r.error === false){
 						$.notify("Eliminada con exito!...", "success");
 						location.reload();
@@ -2340,7 +2286,7 @@ function createCategoryFast(){
 				location.reload();
 			}else{
 				$.notify("Error creando la categoria...", "error");
-				console.log(r);
+				//console.log(r);
 			};
 		});
 	}else{
@@ -2391,7 +2337,7 @@ function editCategoryFast(){
 			"raiz":$fields.raiz,
 			"type":$fields.type
 		}, function(r){			
-			console.log(r);
+			//console.log(r);
 			if(r.error === false){
 				$.notify(r.message, "success");
 				location.reload();
@@ -2452,11 +2398,11 @@ function responseReplyModal(id,query,topic){
 				datos.id = id;
 				datos.response = result;
 				
-				console.log(datos);
+				//console.log(datos);
 				
 				if(datos.id != '' && datos.response != ''){
 					Forma2.app("POST", "comments", datos, function(r){
-						console.log(r);
+						//console.log(r);
 						if(r.error === false){
 							$.notify(r.message, "success");
 							if($("#question-response-navbar-id-"+datos.id).length > 0){
@@ -2490,11 +2436,11 @@ function createCommentsForum(id,comment_raiz){
 	datos.comment_raiz = comment_raiz;
 	datos.type = "forum";
 	datos.query = $("#create-comments-forum-input-query-"+comment_raiz).val();
-	console.log(datos);
+	//console.log(datos);
 	
 	if(datos.raiz != '' && datos.type != '' && datos.query != ''){
 		Forma2.app("POST", 'comments', datos, function(r){
-			console.log(r);
+			//console.log(r);
 			if(r.error === false){
 				$.notify(r.message, "success");
 				location.reload();
@@ -2528,7 +2474,7 @@ function deleteCommentsForum(id,query,topic){
 					"action":"delete",
 					"query":id
 				}, function(r){
-					console.log(r);
+					//console.log(r);
 					if(r.error === false){
 						$.notify("Eliminado con exito!...", "success");
 						location.reload();
@@ -2552,7 +2498,7 @@ function savePublish(idPublish,public,type){
 		"type":type,
 		"public":public
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			$.notify("Guardado...", "success");
 			location.reload();
@@ -2603,7 +2549,7 @@ function likePublish(idPublish,type){
 		"type":type,
 		"id_ref":idPublish
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			if($(".total-likes-"+idPublish).length > 0){
 				$(".total-likes-"+idPublish).text(r.stadistics.likes);
@@ -2632,7 +2578,7 @@ function cargarPublicacionPagina(){
 			"type":param.type,
 			"id":param.id_ref
 		}, function(r){
-			console.log(r);
+			//console.log(r);
 			console.log("Cargado cargarPublicacionPagina()");
 			
 			if(r.error === false){
@@ -2929,7 +2875,7 @@ function stadistQuizExportPage(){
 		"export":true,
 		"id":param.topic
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			$.notify(r.message, "success");
 			
@@ -2952,13 +2898,13 @@ function stadistQuizExportPage(){
 					if (typeof r.export !== 'undefined' && r.export !== null) {
 						for (b = 0; b < r.export.length; b++) {
 							element = (r.export[b]);
-							console.log(element);
+							//console.log(element);
 							
 							$j = '<tr>';
 								$j += '<td>'+element.user.user+'</td>';
 								$j += '<td>'+element.user.nombre+'</td>';
 								$j += '<td>';
-									console.log(element.user.result);
+									//console.log(element.user.result);
 								
 									if (typeof element.result !== 'undefined' && element.result !== null) {
 										$j += '<table>';
@@ -2995,33 +2941,8 @@ function stadistQuizExportPage(){
 	});
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function dialogCreateQuestionQuizFast(id){
-	console.log(id);
+	//console.log(id);
 	$("#modal-create-question-quiz").modal("show");
 	
 	$('#modal-create-question-quiz input').val("");
@@ -3062,7 +2983,7 @@ function createQuestionQuizFast(){
 				"query":$datos.query,
 				"response":JSON.stringify($datos.response)
 			}, function(r){
-				console.log(r);
+				//console.log(r);
 				if(r.error === false){
 					$.notify(r.message, "success");
 					$(".querys-body").append(crearQueryPageCreate(r));
@@ -3080,7 +3001,7 @@ function createQuestionQuizFast(){
 };
 
 function crearQueryPageCreate(element){
-	console.log(element);
+	//console.log(element);
 	$j = '<div class="col-sm-12" id="question-id-'+element.id+'">';
 		$j += '<div class="col-sm-1">';
 			$j += '<a href="javascript:deleteQuestionQuiz('+element.id+');"><i class="fas fa-ban"></i></a>';
@@ -3133,7 +3054,7 @@ function deleteQuestionQuiz(id){
 					"action":"delete",
 					"id":id
 				}, function(r){
-					console.log(r);
+					//console.log(r);
 					if(r.error === false){
 						$.notify("Eliminada con exito!...", "success");
 						$("#question-id-"+id).remove();
@@ -3169,11 +3090,10 @@ function activeQuiz(id){
 					"active":true,
 					"id":id
 				}, function(r){
-					console.log(r);
+					//console.log(r);
 					if(r.error === false){
 						$.notify(r.message, "success");
 						
-						//setInterval(function(){ location.replace(Forma2.options.site_url+'/index.php?pageActive=export-quiz'); },1000);
 					}else{
 						$.notify(r.message, "error");
 					}
@@ -3203,7 +3123,7 @@ function deleteQuiz(id){
 					"action":"delete",
 					"id":id
 				}, function(r){
-					console.log(r);
+					//console.log(r);
 					if(r.error === false){
 						$.notify("Eliminada con exito!...", "success");
 						setInterval(function(){ location.replace(Forma2.options.site_url); },1000);
@@ -3223,7 +3143,7 @@ function disableQuizAndEdit(id){
 		"id":id,
 		"view":0
 	}, function(r){
-		console.log(r);
+		//console.log(r);
 		if(r.error === false){
 			$.notify("Quiz Desactivado con exito!...", "success");
 			
@@ -3662,401 +3582,6 @@ function cargarVirtualStepsFelipheGomez(){
 }
 /** FIN VIRTUAL STEPS **/
 
-/** INICIO MESSENGER CHAT **/
-
-function cargarMessegerPage(){
-	console.log("Cargando cargarMessegerPage().");
-	param = getUrlVars();
-	
-	if(param.read !== undefined && param.read > 0){
-		console.log("Detectando conversacion con id: "+param.read);
-		localStorage.lastMessenger = param.read;
-		cargarConversacionMessengerPageForId();
-	}
-	cargarLastChatsSidebar();
-}
-
-function cargarMasChatsPage(){
-	console.log("Cargando cargarMasChatsPage()");
-	
-	$thisElement = $("#ankitjain28");
-	$datos = $thisElement.data();
-	if(!$datos.page){ $datos.page = 2; }else{ $datos.page = ($datos.page); };
-	if(!$datos.limit){ $datos.limit = 10; };
-	
-	if($datos.page != undefined && $datos.limit != undefined){
-		console.log("Cargando mas chats...");
-		console.log($datos);
-		
-		Forma2.app("POST", "messenger", 
-		{
-			"list_chats":"true",
-			"read_chat":"true",
-			"page":$datos.page,
-			"limit":$datos.limit,
-			"conversation":localStorage.lastMessenger
-		}, function(r){
-			console.log(r);
-			if(r.error === false){
-				console.log("Cargando los nuevos chats");
-				
-					if(r.data.length > 0){
-						
-						$thisElement.data('page',$datos.page+1);
-					
-						for (i = 0; i < r.data.length; i++) {
-							if($('#chat-id-'+r.data[i].id).length<=0){
-								console.log("chat no exite, agregando");
-							
-								if(r.data[i].enviado_por.id == r.enviado_por.id){
-									$(".chat-active-page").prepend(creatMensajeMy(r.data[i])); //append -> o -> prepend
-								}else{
-									$(".chat-active-page").prepend(creatMensajeUser(r.data[i]));					
-								}
-								if(i == (r.data.length-1)){
-									if(window.location.hash !== undefined){ window.location.hash = ''; };
-									
-									idTempo = r.data.length-1;
-								
-									window.location.hash = "#chat-id-"+idTempo;
-									//$("#chat-id-"+idTempo).focus();
-								}
-							}
-						}
-					}else{
-						console.log("No hay mas chats");
-						$.notify("No hay mas chats",'error');
-					}
-			}else{
-				console.log("Error cargando mas chats");
-			}
-		})
-	}
-}
-
-function cargarConversacionMessengerPageForId(){
-	cargarLastChatsSidebar();
-	
-	console.log("Cargando coversacion messenger id: "+localStorage.lastMessenger);
-	$("#text-response-send").data('sendid',localStorage.lastMessenger);
-	
-	
-	Forma2.app("POST", "messenger", 
-	{
-		"list_chats":"true",
-		"read_chat":"true",
-		"conversation":localStorage.lastMessenger
-	}, function(r){
-		if(localStorage.lastMessengerResponse == JSON.stringify(r)){
-			console.log("El mensaje no a cambiado.");
-		}else{
-			if(r.error === false){
-				console.log(r);
-				$para = new Array();
-				for (c = 0; c < r.enviado_para.length; c++) {
-					$para.push(r.enviado_para[c].nombre);
-				}
-				//console.log("Para: "+$para.join());
-				$(".chat-to-page").text("Integrantes: "+$para.join());
-				
-				if(r.data.length>0){
-					for (i = 0; i < r.data.length; i++) {
-						if($('#chat-id-'+r.data[i].id).length<=0){
-							console.log("chat no exite, agregando");
-						
-							if(r.data[i].enviado_por.id == r.enviado_por.id){
-								$(".chat-active-page").append(creatMensajeMy(r.data[i])); //append -> o -> prepend
-							}else{
-								$(".chat-active-page").append(creatMensajeUser(r.data[i]));					
-							}
-							if(i == (r.data.length-1)){
-								if(window.location.hash !== undefined){ window.location.hash = ''; };
-								
-								idTempo = r.data[i].id;
-							
-								window.location.hash = "#chat-id-"+idTempo;
-								//$("#chat-id-"+idTempo).focus();
-							}
-						}
-					}
-				}else{
-					$(".chat-active-page").html("No hay chats");
-				}
-				$('[data-toggle="tooltip"]').tooltip();
-
-			}else{
-				//console.log(r);
-			}
-		}
-	});
-}
-
-/// Cargar Lista de amigos
-function cargarPeopleList(){
-	Forma2.app("POST", "messenger", 
-	{
-		"list_people":"true"
-	}, function(r){
-		if(r.error === false){
-			$fechaActual = new Date(r.connection).getTime() / 1000;
-			$totalSpan = 0;
-			$html = '';
-			$(".people-chat-list").html('');
-			for (i = 0; i < r.friends.length; i++) {
-				$totalSpan++;
-				$active = false;
-				$fechaUltimaConnection = new Date(r.friends[i].last_connection).getTime() / 1000;
-				$timeS = ($fechaActual-$fechaUltimaConnection);
-				if($fechaUltimaConnection>0){
-					if($timeS<=(60*5)){
-						$active = true;
-					}
-				}
-				if($active == true){
-					$activeColor = 'color:darkgreen;';
-					$label = 'Conectado';
-				}else{
-					$activeColor = 'color:red;';
-					$label = 'No Conectado';
-				}
-				
-				
-				$html += '<div id="list-people-id-'+r.friends[i].id+'" class="row sideBar-body list-group-item" onclick="javascript:cargarConversacionMessengerPage('+"'"+r.friends[i].id+"'"	+');" data-user="'+r.friends[i].user+'" data-name="'+r.friends[i].nombre.toLowerCase()+'">';
-					$html += '<div class="col-sm-3 col-xs-3 sideBar-avatar">';
-						$html += '<div class="avatar-icon">';
-							$html += '<i title="'+$label+'" data-toggle="tooltip" data-placement="right" class="fa fa-circle" alt="'+r.friends[i].user+'" style="'+$activeColor+'"></i>';
-							//$html += '<img src="https://bootdey.com/img/Content/avatar/avatar1.png">';
-							
-						$html += '</div>';
-					$html += '</div>';
-					$html += '<div class="col-sm-9 col-xs-9 sideBar-main">';
-						$html += '<div class="row">';
-							$html += '<div class="col-sm-8 col-xs-8 sideBar-name">';
-							  $html += '<span class="name-meta name" title="'+r.friends[i].user+'" data-toggle="tooltip" data-placement="bottom">'+r.friends[i].nombre+'</span>';
-							$html += '</div>';
-							$html += '<div class="col-sm-4 col-xs-4 pull-right sideBar-time">';
-								$html += '<span class="time-meta pull-right">'+r.friends[i].last_connection+'</span>';
-							$html += '</div>';
-						$html += '</div>';
-					$html += '</div>';
-				$html += '</div>';
-			};
-			
-			$(".people-chat-list").prepend($html);
-			
-			$(".groups-list-messenger").html('');
-			
-			for (i = 0; i < r.viewGroups.length; i++) {
-				$(".groups-list-messenger").append('<span style="font-size:0.7em;"> • '+r.viewGroups[i].name+'(s/es)</span> ');
-			}
-			
-			
-			$('[data-toggle="tooltip"]').tooltip();
-		}else{
-			console.log(r);
-		}
-	});
-};
-
-/// Cargar Lista de amigos
-function cargarLastChatsSidebar(){
-	Forma2.app("POST", "messenger", 
-	{
-		"last_chats":"true"
-	}, function(r){
-		console.log(r);
-		if(r.error === false){
-			//alert("Cargados los ultimos chats");
-			if(r.data.length > 0){
-				
-				for (i = 0; i < r.data.length; i++) {
-					createItemChatSideBarPageMessenger(r.data[i]);
-				}
-				
-			}
-		}else{
-			console.log("No hay chats.");
-		}
-	});
-};
-
-function createItemChatSideBarPageMessenger(element){
-	$para = new Array();
-	for (c = 0; c < element.profiles.length; c++) { $para.push(element.profiles[c].nombre); };
-	console.log($para.join());
-	//$para.join();
-	
-	if(getUrlVars().read !== undefined && getUrlVars().read > 0 && getUrlVars().read == element.id){ $style = 'background-color: beige;'; }else{ $style = ''; };
-	
-	$ht = '<div id="last-chat-page-id-'+element.id+'" class="row sideBar-body" style="'+$style+'">';
-		$ht += '<div class="col-sm-12 col-xs-12 sideBar-main">';
-			$ht += '<div class="row">';
-				$ht += '<a href="'+Forma2.options.site_url+'index.php?pageActive=messenger&read='+element.id+'&view=true">';
-					$ht += '<div class="col-sm-8 col-xs-8 sideBar-name">';
-						for (c = 0; c < element.profiles.length; c++) {
-							if(element.profiles[c].id == Forma2.loadSession().authResponse.signedRequest.id){ element.profiles[c].nombre = 'Tu'; }
-							$ht += '<span class="name-meta"><b>• '+element.profiles[c].nombre+'</b></span><br>';
-						};
-					$ht += '</div>';
-					$ht += '<div class="col-sm-4 col-xs-4 pull-right sideBar-time">';
-						$ht += '<span class="time-meta pull-right">'+element.last_activity+'</span>';
-					$ht += '</div>';
-				$ht += '</a>';
-			$ht += '</div>';
-		$ht += '</div>';
-	$ht += '</div>';
-	
-	if($('#last-chat-page-id-'+element.id).length<=0){
-		$(".last-chats-messenger").append($ht);
-	}
-	
-	
-}
-
-/// Parse Chat Enviado <> Perfil actual
-function creatMensajeUser($data){
-	if($data.leerChat == true){ $color = 'alert-success'; }
-	else { $color = ''; };
-	
-	$html = '<div class="row message-body" id="chat-id-'+$data.id+'">';
-		$html += '<div class="col-sm-12 message-main-receiver">';
-			$html += '<div class="receiver '+$color+'">';
-				$html += '<div class="message-text">'+$data.enviado_por.user+' Dijo: </div>';
-				$html += '<div class="message-text">'+$data.message+'</div>';
-				$html += '<span class="message-time pull-right">'+$data.fcreate+'</span>';
-			$html += '</div>';
-		$html += '</div>';
-	$html += '</div>';
-
-	return $html;
-};
-
-/// Parse Chat Enviado = Perfil actual
-function creatMensajeMy($data){
-	$html = '<div class="row message-body" id="chat-id-'+$data.id+'">';
-		$html += '<div class="col-sm-12 message-main-sender">';
-			$html += '<div class="sender">';
-				$html += '<div class="message-text">'+$data.message+'</div>';
-				$html += '<span class="message-time pull-right">'+$data.fcreate+'</span>';
-			$html += '</div>';
-		$html += '</div>';
-	$html += '</div>';
-	
-	return $html;
-};
-
-/// Cargar conversacion segun list ids de amigos (se verifica si existe una conversacion sino se crea una
-function cargarConversacionMessengerPage(list){
-	console.log(list);
-	
-	Forma2.app("POST", "messenger", 
-	{
-		"return":"id_conversacion",
-		"list":list
-	}, function(r){
-		console.log(r);
-		if(r.error === false){
-			cargarChatMessengerPage(r.id);
-		}else{
-			$.notify("Hubo un problema cargardo la conversacion.","");
-		}
-	});
-};
-
-/// Cargar y activar chat
-function cargarChatMessengerPage(idConversacion){
-	location.replace('index.php?pageActive=messenger&read='+idConversacion);
-	cargarConversacionMessengerPageForId();
-};
-
-/// Enviar Chat actual == Intro
-function enviarMensajePageChat(){
-	$mensaje_para = $("#text-response-send").data('sendid');
-	$message = $("#text-response-send").val();
-	
-	if($mensaje_para == 0){
-		$.notify("Selecciona a quien vas a enviar el mensaje.","error");
-	}else{
-		if($message == 0){
-			$.notify("El mensaje está en blanco.","error");
-		}else{
-			Forma2.app("POST", "messenger", 
-			{
-				"chat_send":"true",
-				"to":$mensaje_para,
-				"message":$message
-			}, function(r){
-				console.log(r);
-				if(r.error === false){
-					$("#text-response-send").val("");
-					
-	
-					cargarConversacionMessengerPageForId();
-	
-					
-					$.notify("Mensaje enviado con éxito...", "success");
-				}else{
-					$.notify("Error enviado el mensaje...", "error");
-				}
-			});
-		}
-	}
-};
-
-/// Agregar usuario a la conversacion activa
-function agregarUserConversacion(){
-	$.notify("Cargando lista de amigos...","info");
-	
-	Forma2.app("POST", "messenger", 
-	{
-		"list_people":"true"
-	}, function(r){
-		console.log(r);
-		if(r.error === false){
-			$options = new Array();
-			
-			for (i = 0; i < r.friends.length; i++) {
-				if($options[r.friends[i].id]){
-				}else{
-					arreglo = {};
-					arreglo.value = r.friends[i].id;
-					arreglo.text = r.friends[i].nombre+' [ '+r.friends[i].user+' ] ';
-					
-					$options.push(arreglo);
-				};
-			}
-			
-			bootbox.prompt({
-				title: "This is a prompt with select!",
-				inputType: 'select',
-				inputOptions: $options,
-				callback: function (result) {
-					if(result>0){
-						console.log(result);
-						Forma2.app("POST", "messenger", 
-						{
-							"add_member":result,
-							"conversation":localStorage.lastMessenger
-						}, function(r){
-							console.log(r);
-							if(r.error === false){
-								$.notify("Persona Agregada con exito!", "success");
-								cargarConversacionMessengerPageForId();
-								location.reload();
-							}else{
-								$.notify("Error agregando a la conversacion...", "error");
-							}
-						});
-					}
-				}
-			});
-		}else{
-			console.log(r);
-		}
-	});
-};
-
-/** FIN MESSENGER CHAT **/
 
 /** INICIO CRONOMETO **/
 console.log("Cargando Funciones del Cronometro")
@@ -4151,43 +3676,6 @@ iniciarCronometro = setInterval(function() { initCronometro(); }, 1000);
 
 /** ready document ****/
 $(document).ready( function() {
-	$(".send-image-conversation").change(function(){
-		if (this.files && this.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				console.log("Enviando Imagen por chat.");
-				Forma2.app("POST", "pictures", 
-				{
-					"action":"create",
-					"data":e.target.result
-				}, function(r){
-					if(r.error === false){
-						Forma2.app("POST", "messenger", 
-						{
-							"chat_send":"true",
-							"to":$("#text-response-send").data('sendid'),
-							"message":'<img src="'+Forma2.options.api_url_large+'/pictures.php?accesstoken='+Forma2.AccessToken()+'&id='+r.last_id+'" width="100%" />'
-						}, function(r){
-							console.log(r);
-							if(r.error === false){
-								$("#text-response-send").val("");
-								
-								cargarConversacionMessengerPageForId();					
-								$.notify("Mensaje enviado con éxito...", "success");
-							}else{
-								$.notify("Error enviado el mensaje...", "error");
-							}
-						});
-					}else{
-						$.notify("Error subiendo la imagen...", "error");
-					}
-				});
-			}
-			reader.readAsDataURL(this.files[0]);
-		}
-	});	
-	
-	
 	/// Detectar Intro en el text del chat
 	$( "#text-response-send" ).keypress(function(e) { if(e.key == 'Enter'){ enviarMensajePageChat(); } });
 	
@@ -4271,14 +3759,14 @@ $(document).ready( function() {
 					"action":"create",
 					"data":e.target.result
 				}, function(r){
-					console.log(r);
+					//console.log(r);
 					if(r.error === false){
 						Forma2.app("POST", "publicaciones", {
 							"action":"change",
 							"id":$id,
 							"thumbnail":r.id
 						}, function(r2){
-							console.log(r2);
+							//console.log(r2);
 							if(r2.error === false){
 								$(".image-preview-publish").attr("src",Forma2.options.api_url_large+"/pictures.php?accesstoken="+Forma2.AccessToken()+"&id="+r.id)
 								

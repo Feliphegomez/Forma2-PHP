@@ -18,7 +18,7 @@ define('server_default', 'serverapps'); // Nombre del servidor Predeterminado (I
 define('folderSitio', '/forma2'); // Ruta de la carpeta del Sitio
 define('folderAPI', '/forma2/api/'.v_api); // Ruta de la carpeta de la API
 
-define('DB_SERVER', '192.168.1.20'); // DB Host url
+define('DB_SERVER', 'localhost'); // DB Host url
 define('DB_USER', 'fg'); // DB Usuario de Acceso
 define('DB_PASS', 'Celeste.0.Samael'); // DB Contraseña de Acceso
 define('DB_NAME', 'forma2'); // DB Nombre de la Base de Datos
