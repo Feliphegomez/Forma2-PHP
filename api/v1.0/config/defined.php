@@ -1,27 +1,27 @@
 <?php
-error_reporting(-1);
-ini_set('display_errors', 'on');
+#error_reporting(-1);
+#ini_set('display_errors', 'on');
 
 setlocale(LC_TIME,"es_CO"); // Configurar Hora para Colombia
 setlocale(LC_TIME, 'es_CO.UTF-8'); // Configurar Hora para Colombia en UTF-8
 date_default_timezone_set('America/Bogota'); // Configurar Zona Horaria
 
-define('site_name', 'Forma2 - No somos nosotros, Eres TU!'); // Titulo X defecto de la aplicacion
-define('site_name_md', 'Forma2'); // Titulo X defecto small
-define('site_name_sm', 'F2'); // Titulo X defecto medium
+define('site_name', 'FormaT - No somos nosotros, Eres TU!'); // Titulo X defecto de la aplicacion
+define('site_name_md', 'FormaT'); // Titulo X defecto small
+define('site_name_sm', 'FT'); // Titulo X defecto medium
 define('v_api', 'v1.0'); // Version actual de la API
 define('F5_enable', true); // Activar F5
 
 define('connect', 'https'); // Tipo de conexión (HTTP | HTTPS)
 define('ssl_enable', true); // SSL Habilitado o no. (False | True)
-define('server_default', 'id-0851'); // Nombre del servidor Predeterminado (IP | nameserver)
-define('folderSitio', '/forma2-beta'); // Ruta de la carpeta del Sitio
-define('folderAPI', '/forma2-beta/api/'.v_api); // Ruta de la carpeta de la API
+define('server_default', 'forma2.ltsolucion.com'); // Nombre del servidor Predeterminado (IP | nameserver)
+define('folderSitio', ''); // Ruta de la carpeta del Sitio
+define('folderAPI', '/api/'.v_api); // Ruta de la carpeta de la API
 
 define('DB_SERVER', 'localhost'); // DB Host url
-define('DB_USER', 'root'); // DB Usuario de Acceso
-define('DB_PASS', ''); // DB Contraseña de Acceso
-define('DB_NAME', 'forma2-beta'); // DB Nombre de la Base de Datos
+define('DB_USER', 'feliphegomez_f2'); // DB Usuario de Acceso
+define('DB_PASS', 'lnQ40Me6oN'); // DB Contraseña de Acceso
+define('DB_NAME', 'feliphegomez_f2'); // DB Nombre de la Base de Datos
 
 
 

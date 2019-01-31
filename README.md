@@ -1,9 +1,8 @@
 # Forma2-PHP
 
-[![N|Solid](http://feliphegomez.info/images/logo.png)](https://feliphegomez.info)
 # Forma2 - No somos nosotros, Eres TU! Developer by FelipheGomez
 ---
-Forma2 es un sistema de gestión de contenidos (CMS) a medida con muchos aspectos positivos, incluyendo su facilidad de uso y extensibilidad, esto a hecho que Forma2 crezca desde su idea inical. Y lo mejor de todo es que Forma2! es una solución pensada especialmente para la empresa Emtelco CX & BPO; El proyecto contiene:
+Forma2 es un sistema de gestión de contenidos (CMS) a medida con muchos aspectos positivos, incluyendo su facilidad de uso y extensibilidad, esto a hecho que Forma2 crezca desde su idea inical. Y lo mejor de todo es que Forma2! es una solución pensada especialmente para la empresa LTS; El proyecto contiene:
   - eCards
   - Articulos
   - Foro de preguntas
@@ -24,13 +23,7 @@ Los siguientes usuarios son de pruebas, en caso de requerir modificarlos o cambi
   - ADMIN: admin.master
   - GUEST: forma2.master
 
-## Rutas de Acceso:
-  - [https://forma2.demedallo.com/forma2/][forma2_1] - recomendada
-  - [https://id-0851.epmcc-pob.com/forma2/][forma2_2]
-  - [https://id-0851/forma2/][forma2_3]
-  - [https://10.5.118.16/forma2/][forma2_4]
-
-Forma2 es un CMS y a su vez es una API Graph de uso ligero basado en la exigencia de la linea TigoUne de la compañía Emtelco CX & BPO. Está programado por [Andrés Felipe Gómez Maya] desarrollador full stack [Sitio de FelipheGomez][df1]
+Forma2 es un CMS y a su vez es una API Graph de uso ligero basado en la exigencia de la linea TigoUne de la compañía LTS CX & BPO. Está programado por [Andrés Felipe Gómez Maya] desarrollador full stack [Sitio de FelipheGomez][df1]
 
 ¡Ahora vamos a aprender un poco mas de sus **componentes**, **arquitectura** y el **uso basico** con sus primeros pasos para su correcta **instalacion**, **implementación** y **ejecucion**.
 
@@ -61,8 +54,7 @@ Forma2 se desarrolló y se ejecutó de manera correcta en un entorno bajo las si
 Si tienes inconvenientes al momento instalar puedes contactar al desarrollador desde:
 
 ```sh
-- Correo corporativo: afgomema@emtelco.com.co
-- Correo altero: feliphegomez@demedallo.com
+- Correo : feliphegomez@gmail.com
 ```
 
 ## Antes de...
@@ -125,10 +117,6 @@ La mayor parte de las pagina de la API requieren su ejecucion con un accesstoken
 | quiz | Eliminar preguntas, Crear pregunta, Crear Quiz en borrador, Modificar Quiz, Activar y Desactivar Quiz, Quiz Actual, Ver quiz especifico. |
 | search | Buscar publicaciones, dispositivos o manuales, foro y proximamente mucho mas. |
 ---
-[forma2_1]: <https://forma2.demedallo.com/forma2/>
-[forma2_2]: <https://id-0851.epmcc-pob.com/forma2/>
-[forma2_3]: <https://id-0851/forma2/>
-[forma2_4]: <https://10.5.118.16/forma2/>
 
 [jQuery]: <https://jquery.com/>
 [BootStrap]: <http://getbootstrap.com/>

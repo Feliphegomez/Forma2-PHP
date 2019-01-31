@@ -6,14 +6,14 @@ setlocale(LC_TIME,"es_CO"); // Configurar Hora para Colombia
 setlocale(LC_TIME, 'es_CO.UTF-8'); // Configurar Hora para Colombia en UTF-8
 date_default_timezone_set('America/Bogota'); // Configurar Zona Horaria
 
-define('site_name', 'Forma2 - No somos nosotros, Eres TU!'); // Titulo X defecto de la aplicacion
-define('site_name_md', 'Forma2'); // Titulo X defecto small
+define('site_name', 'FormaT - No somos nosotros, Eres TU!'); // Titulo X defecto de la aplicacion
+define('site_name_md', 'FormaT'); // Titulo X defecto small
 
 define('connect', 'https'); // Tipo de conexión (HTTP | HTTPS)
 define('ssl_enable', true); // SSL Habilitado o no. (False | True)
-define('server_default', 'id-0851'); // Nombre del servidor Predeterminado (IP | nameserver)
-define('folderSitio', '/forma2-beta'); // Ruta de la carpeta del Sitio
-define('folderAPI', '/forma2-beta/api'); // Ruta de la carpeta de la API
+define('server_default', 'forma2.ltsolucion.com'); // Nombre del servidor Predeterminado (IP | nameserver)
+define('folderSitio', ''); // Ruta de la carpeta del Sitio
+define('folderAPI', '/api'); // Ruta de la carpeta de la API
 
 ############### ---- NO TOCAR PARA NADA ---- ###############
 if(!isset($_SERVER['REQUEST_SCHEME'])) { $_SERVER['REQUEST_SCHEME']=connect; }; // Detectar si existe REQUEST_SCHEME

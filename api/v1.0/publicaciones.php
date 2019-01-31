@@ -52,8 +52,8 @@ if(isset($data['accesstoken'])){
 		else if(isset($data['action']) && $data['action'] == 'create'){
 			if(isset($permisos_user->create) && $permisos_user->create == true){
 				if(isset($data['draft']) && $data['draft'] == true && isset($data['type']) && $data['type'] !== '' ){
-					$command = "INSERT INTO ".TBL_CONTENIDO." ( type,piloto,author,trash,public ) VALUES (?,?,?,?,?)";
-					$create = crearSQL($command,array($data['type'],$checkToken['piloto'],$checkToken['id'],0,0));
+					$command = "INSERT INTO ".TBL_CONTENIDO." ( type,piloto,author ) VALUES (?,?,?)";
+					$create = crearSQL($command,array($data['type'],$checkToken['piloto'],$checkToken['id']));
 					if(isset($create->error) && $create->error == false){
 						$jsonFinal = $success_API->{'10'}; # Success 10 - Contenido creado con exito.
 						$jsonFinal->id = $create->last_id;

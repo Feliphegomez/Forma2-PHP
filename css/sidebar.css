@@ -21,7 +21,7 @@ a, a:hover, a:focus {
 
 .navbar {
     padding: 10px 5px;
-    background: #cadb2a;
+    background: #337ab7;
     border-radius: 0;
     margin-bottom: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
@@ -128,7 +128,7 @@ ul.dropdown-menu.two li a .badge {
 	background:#5cb85c;
 } 
 .progress-striped .light-blue{
-	background:#5bc0de;
+	background:#337ab7;
 } 
 .progress-striped .red{
 	background:#d9534f;
@@ -613,7 +613,7 @@ a.article, a.article:hover {
     FOOTER
 ----------------------------------------------------- */
 .footerPage{
-    background-color: #cadb2a;
+    background-color: #337ab7;
     width: 50%;
     position: absolute;
     right: 0;

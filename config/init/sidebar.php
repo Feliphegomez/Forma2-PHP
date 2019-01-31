@@ -2,7 +2,7 @@
 	<div class="sidebar-header">
 		<!-- .: <?php echo site_name_md; ?> :. -->
 		<h3 style="text-align:center;">
-			<a href="<?php echo url_site; ?>"><img class="" src="images/logos/Logotrans-350-opt.gif" style="width:100%;" /></a>
+			<a href="<?php echo url_site; ?>"><img class="" src="images/logos/logo.png" style="width:100%;" /></a>
 		</h3>
 	</div>
 	<div class="sidebar-profile-box">
