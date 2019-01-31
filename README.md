@@ -122,6 +122,7 @@ La mayor parte de las pagina de la API requieren su ejecucion con un accesstoken
 | search | Buscar publicaciones, dispositivos o manuales, foro y proximamente mucho mas. |
 ---
 
+
 [jQuery]: <https://jquery.com/>
 [BootStrap]: <http://getbootstrap.com/>
 [Notifity.js]: <https://notifyjs.com/>
