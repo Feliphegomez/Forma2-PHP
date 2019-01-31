@@ -1,34 +1,36 @@
-# Forma2-PHP
+# FormaT
 
-# Forma2 - No somos nosotros, Eres TU! Developer by FelipheGomez
+# FormaT - No somos nosotros, Eres TU! Developer by FelipheGomez
 ---
-Forma2 es un sistema de gestión de contenidos (CMS) a medida con muchos aspectos positivos, incluyendo su facilidad de uso y extensibilidad, esto a hecho que Forma2 crezca desde su idea inical. Y lo mejor de todo es que Forma2! es una solución pensada especialmente para la empresa LTS; El proyecto contiene:
-  - eCards
-  - Articulos
-  - Foro de preguntas
-  - Calendario de Capacitaciones
-  - Simuladores
-  - Chat de Mensajeria
-  - Indicadores (KPIs)
-  - Cronometro
-  - Notificaciones Fallas / Alertas
-  - Quiz
+
+## ¿Que es FormaT?
+FormaT es un CMS y a su vez es una API Graph de uso ligero basado en las exigencias de la linea CALL CENTER. Fue Creado, Diseñado y Desarrollado por [Andrés Felipe Gómez Maya] desarrollador full stack [Sitio de FelipheGomez][df1] como un sistema de gestión de contenidos (CMS) a medida el cual trae muchos aspectos positivos para tu empresa, incluyendo su facilidad de uso y extensibilidad, esto a hecho que FormaT crezca desde su idea inical. Y lo mejor de todo es que FormaT! es una solución pensada especialmente para uso corporativo;
+
+El proyecto contiene:
+  - Contenido por categorias y grupos. 
+  - Imagenes Banner (eCards)
+  - Articulos de Informacion (Posts)
+  - Foro de preguntas y respuestas anidado
+  - Calendario tipo Gantt
+  - Tutoriales Paso a Paso Didacticos
+  - Chat de Mensajeria (Futura adaptacion con servidores IM)
+  - Indicadores KPIs (aht,penc,pecu,pecn,rgu,ups,nps)
+  - Cronometro (Con alerta)
+  - Notificaciones (Fallas/Alertas)
+  - Quiz (Con activacion automatica)
   - Exportar Resultados de Quiz
   - Importar Personal de forma masiva
   - Importar KPIs de forma masiva
-  - Contenido por categorias y grupos. 
 
-## Usuarios de pruebas!
+## DEMO - Usuarios de pruebas!
 Los siguientes usuarios son de pruebas, en caso de requerir modificarlos o cambiar sus datos predeterminados se debe realizar por el importador de personal o en su defecto desde la BD.
-  - ADMIN: admin.master
-  - GUEST: forma2.master
+  - ADMIN: admin.demo
+  - GUEST: user.demo
 
-Forma2 es un CMS y a su vez es una API Graph de uso ligero basado en la exigencia de la linea TigoUne de la compañía LTS CX & BPO. Está programado por [Andrés Felipe Gómez Maya] desarrollador full stack [Sitio de FelipheGomez][df1]
-
-¡Ahora vamos a aprender un poco mas de sus **componentes**, **arquitectura** y el **uso basico** con sus primeros pasos para su correcta **instalacion**, **implementación** y **ejecucion**.
+#### ¡Ahora vamos a aprender un poco mas de sus **componentes**, **arquitectura** y el **uso basico** con sus primeros pasos para su correcta **instalacion**, **implementación** y **ejecucion**.
 
 ## Plugins
-Forma2 utiliza una serie de proyectos de código abierto para funcionar correctamente, te mostraremos cuales son:
+FormaT utiliza una serie de proyectos de código abierto para funcionar correctamente, te mostraremos cuales son:
 
 * [jQuery] - Biblioteca de JavaScript rápida, pequeña y rica en funciones.
 * [BootStrap] - Biblioteca de componentes front-end más popular del mundo
@@ -40,10 +42,10 @@ Forma2 utiliza una serie de proyectos de código abierto para funcionar correcta
 * [pinterest_grid] Estilo grafico para articulos.
 * [fontawesome] Biblioteca de iconos (V 5.0).
 
-Y, por supuesto, Forma2 es aplicable para cualquier tipo de desarrollo ya que tambien puedes acceder a la API por medio de HTTP con metodos POST y GET.
+Y, por supuesto, FormaT es aplicable para cualquier tipo de desarrollo ya que tambien puedes acceder a la API por medio de HTTP con metodos POST y GET.
 
 ### Instalacion
-Forma2 se desarrolló y se ejecutó de manera correcta en un entorno bajo las siguientes especificaciones de manera correcta.
+FormaT se desarrolló y se ejecutó de manera correcta en un entorno bajo las siguientes especificaciones de manera correcta.
 
 ```sh
   Apache/2.4.28 (Win32) OpenSSL/1.0.2l PHP/7.1.10
@@ -58,7 +60,7 @@ Si tienes inconvenientes al momento instalar puedes contactar al desarrollador d
 ```
 
 ## Antes de...
-Tienes que tener en cuenta que Forma2 se divide en dos Sub Sitios, El Sitio de los archivos de la API que lo mencionaremos de la misma forma "*API*" y el sitio web el cual nos servira de visor y de ejemplo para proximos desarrollos, lo nombraremos "Sitio".
+Tienes que tener en cuenta que FormaT se divide en dos Sub Sitios, El Sitio de los archivos de la API que lo mencionaremos de la misma forma "*API*" y el sitio web el cual nos servira de visor y de ejemplo para proximos desarrollos, lo nombraremos "Sitio".
 
 ## Estructura de las carpetas
  * api [Carpeta de la API]
@@ -98,7 +100,7 @@ Tienes que tener en cuenta que Forma2 se divide en dos Sub Sitios, El Sitio de l
 
 ### Paginas de la API
 
-La mayor parte de las pagina de la API requieren su ejecucion con un accesstoken, puedes conocer tu accesstoken desde la consola del navegador ingresando a Forma2 y ejecucado la funcion `` Forma2.AccessToken() ``.
+La mayor parte de las pagina de la API requieren su ejecucion con un accesstoken, puedes conocer tu accesstoken desde la consola del navegador ingresando a FormaT y ejecucado la funcion `` FormaT.AccessToken() ``.
 
 | Pagina | ¿Que puedo hacer? |
 | ------ | ------ |
