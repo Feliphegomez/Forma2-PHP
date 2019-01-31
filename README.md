@@ -27,6 +27,8 @@ Los siguientes usuarios son de pruebas, en caso de requerir modificarlos o cambi
   - ADMIN: admin.demo
   - GUEST: user.demo
 
+[demoFormaT] - Pulsa aquí para visitar el sitio DEMO.
+
 #### ¡Ahora vamos a aprender un poco mas de sus **componentes**, **arquitectura** y el **uso basico** con sus primeros pasos para su correcta **instalacion**, **implementación** y **ejecucion**.
 
 ## Plugins
@@ -129,3 +131,4 @@ La mayor parte de las pagina de la API requieren su ejecucion con un accesstoken
 [tinymce]: <https://www.tinymce.com/>
 [pinterest_grid]: <https://github.com/ivmelo/jQuery-Pinterest-Grid>
 [fontawesome]: <https://fontawesome.com>
+[demoFormaT]: <https://intranet.ltsolucion.com>
