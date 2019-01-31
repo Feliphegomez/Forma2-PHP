@@ -1,6 +1,6 @@
 <?php
-#error_reporting(-1);
-#ini_set('display_errors', 'on');
+error_reporting(-1);
+ini_set('display_errors', 'on');
 
 setlocale(LC_TIME,"es_CO"); // Configurar Hora para Colombia
 setlocale(LC_TIME, 'es_CO.UTF-8'); // Configurar Hora para Colombia en UTF-8
@@ -22,6 +22,7 @@ define('DB_SERVER', 'localhost'); // DB Host url
 define('DB_USER', 'feliphegomez_f2'); // DB Usuario de Acceso
 define('DB_PASS', 'lnQ40Me6oN'); // DB Contraseña de Acceso
 define('DB_NAME', 'feliphegomez_f2'); // DB Nombre de la Base de Datos
+
 
 
 
@@ -88,7 +89,6 @@ define('lista_negra_palabras', serialize(array(
 	,'maturranga'
 	,'perendusca'
 ))); // Palabras en la lista negra
-
 
 
 

@@ -444,6 +444,7 @@ function crearQuizDraft(){
 	Forma2.app("POST", "quiz", 
 	{
 		"action":"create",
+		"page":"quiz",
 		"draft":true
 	}, function(r){
 		console.log(r);
@@ -452,6 +453,7 @@ function crearQuizDraft(){
 			window.location.href = Forma2.options.site_url+'index.php?pageActive=create-quiz&type=quiz&draft='+r.id;
 		}else{
 			$.notify(r.message, "error");
+			console.log(r);
 		}
 	});
 }
@@ -3165,6 +3167,7 @@ function activeQuiz(id){
 		callback: function (result) {
 			if(result == true){
 				Forma2.app("POST", "quiz", {
+					"page":"quiz",
 					"action":"change",
 					"active":true,
 					"id":id

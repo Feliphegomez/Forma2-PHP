@@ -49,6 +49,7 @@ if(isset($data['accesstoken'])){
 					$command = "INSERT INTO ".TBL_ALERTS." ( title,message,ticket,piloto,fecha_apertura,trash ) VALUES (?,?,?,?,?,?)"; # Consulta SQL
 					$command_array = array($data['title'],$data['message'],$data['ticket'],$checkToken['piloto'],$fecha_apertura,0); # Array con datos para la consulta SQL
 					$cons = crearSQL($command,$command_array);
+					
 					if(isset($cons->error) && $cons->error == false){
 						$jsonFinal = $success_API->{'10'}; # Success 10 - Contenido creado con exito.
 						$jsonFinal->id = $cons->last_id;

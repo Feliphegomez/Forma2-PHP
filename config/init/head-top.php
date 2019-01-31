@@ -369,7 +369,7 @@
 			if($(".messenger-chat-page-view").length > 0){ cargarMessegerPage(); 
 				var refreshConversacionMessengerPage = setInterval(function() {
 					cargarConversacionMessengerPageForId();
-				}, 5000); //Tiempo de Refresh para chat activo
+				}, 30000); //Tiempo de Refresh para chat activo
 			}; // Detectar si se está viendo la pagina de Messenger Chat
 			
 			if($(".stadist-quiz-page-export").length > 0){ stadistQuizExportPage(); };

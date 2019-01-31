@@ -14,6 +14,11 @@ if(isset($data['accesstoken'])){
 	}else{
 		$permisos_user = $checkToken['permisos_cargos']->quiz; # Permisos para la pagina
 		
+		if(!isset($data['page']))
+		{
+			$data['page'] = 'quiz';
+		}
+		
 		#pagina de quiz
 		if(isset($data['page']) && $data['page'] == "quiz"){
 			# Eliminando
@@ -60,7 +65,7 @@ if(isset($data['accesstoken'])){
 						$command = "INSERT INTO ".TBL_F5_TEMAS." ( title,piloto,view,trash ) VALUES (?,?,?,?)";
 						$create = crearSQL($command,array("Nuevo Quiz.",$checkToken['piloto'],0,0));
 						if(isset($create->error) && $create->error == false){
-							$$jsonFinal = $success_API->{'10'}; # Success 10 - Contenido creado con exito.
+							$jsonFinal = $success_API->{'10'}; # Success 10 - Contenido creado con exito.
 							$jsonFinal->id = $create->last_id;
 						}
 						else{

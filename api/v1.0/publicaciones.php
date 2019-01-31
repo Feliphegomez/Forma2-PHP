@@ -168,6 +168,11 @@ if(isset($data['accesstoken'])){
 				unset($data['id']);
 				unset($data['action']);
 				unset($data['accesstoken']);
+				if(isset($data['type']) && $data['type'] !== '')
+				{
+					unset($data['type']);
+				}
+					
 				$jsonFinal->data = $data;
 				
 				$fields = array();

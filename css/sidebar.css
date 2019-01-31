@@ -617,7 +617,7 @@ a.article, a.article:hover {
     width: 50%;
     position: absolute;
     right: 0;
-    left: 40%;
+    left: 25%;
     height: auto;
     padding: 9px 3px;
     text-align: center;
@@ -1224,3 +1224,58 @@ sup {
 }
 */
 /*-------------------------------------------------------------*/
+
+
+
+	.numbers-cronometro{
+		text-align: center;
+		font-size: 5em;
+	}
+	.numbers-cronometro2{
+		font-size: 1.5em;
+		color: #666;
+		background-color: #FFF;
+		border-radius: 10px;
+		height: 35px;
+		padding: 5px;
+		margin: 5px;
+		font-weight: 700;
+		font-family: "Consolas";
+		word-spacing: 0px;
+	}
+	.navbar-left{
+		position: relative;
+		left:225px;
+		max-height: 35px;
+		display: table;
+		/* padding: 15px 5px; */
+	}
+	
+	.navbar-right > li {	
+		float:left;
+	}
+	
+	
+
+#search-bar-results{
+	position: absolute;
+	list-style: upper-roman;
+	left: 250px;
+	font-size: 0.8em;
+	z-index: 99999;
+	background: #5bc0de;
+	overflow-y: auto;
+	height: 120px;
+	border-radius: 15px;
+	line-height: 1.8em;
+    box-shadow: 7px 7px 2px 0px rgba(0,0,0,.85);
+}
+#search-bar-results ul {
+	
+}
+#search-bar-results ul li {
+	
+}
+#search-bar-results a {
+	color:#FFFFFF;
+}
